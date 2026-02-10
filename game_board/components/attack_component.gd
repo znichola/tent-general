@@ -1,7 +1,7 @@
 extends Node
 class_name AttackComponent
 
-signal attack_performed(target: Node)
+signal on_attack(target: Node)
 
 @export var damage: int = 10
 @export var attack_range: float = 50.0
@@ -23,7 +23,7 @@ func attack(target: Node) -> bool:
 	var health_component = target.get_node_or_null("HealthComponent")
 	if health_component and health_component is HealthComponent:
 		health_component.take_damage(damage)
-		attack_performed.emit(target)
+		on_attack.emit(target)
 		can_attack = false
 		cooldown_timer = attack_cooldown
 		return true

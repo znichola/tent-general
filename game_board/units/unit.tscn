@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://co601i3ip6tuv" path="res://game_board/components/attack_component.gd" id="4_fvt2d"]
 [ext_resource type="Script" uid="uid://cyrpebhv7txd4" path="res://game_board/components/unit_ai_component.gd" id="5_4js1n"]
 [ext_resource type="Script" uid="uid://bp5hxsuhuvf16" path="res://game_board/components/vision_component.gd" id="6_wsly2"]
+[ext_resource type="Script" uid="uid://c3583watj5c3d" path="res://game_board/components/collision_component.gd" id="7_n6t1d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sxw8s"]
 radius = 291.08417
@@ -18,7 +19,6 @@ script = ExtResource("1_0jked")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=795734082]
 script = ExtResource("2_n6t1d")
-max_health = 80
 
 [node name="MovementComponent" type="Node" parent="." unique_id=23351134]
 script = ExtResource("3_gab0b")
@@ -40,14 +40,16 @@ script = ExtResource("6_wsly2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionComponent" unique_id=730956291]
 shape = SubResource("CircleShape2D_sxw8s")
 
-[node name="Collision" type="Area2D" parent="." unique_id=326969400]
-collision_mask = 0
+[node name="CollisionComponent" type="Area2D" parent="." unique_id=326969400]
+script = ExtResource("7_n6t1d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=1589837708]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionComponent" unique_id=1589837708]
 shape = SubResource("RectangleShape2D_dmdm5")
 
 [node name="Sprite" type="Polygon2D" parent="." unique_id=294582724]
 color = Color(0.8371849, 0.62610656, 0.29626012, 1)
 polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 
-[connection signal="area_shape_entered" from="VisionComponent" to="VisionComponent" method="_on_area_shape_entered"]
+[connection signal="area_entered" from="VisionComponent" to="VisionComponent" method="_on_area_entered"]
+[connection signal="area_entered" from="CollisionComponent" to="CollisionComponent" method="_on_area_entered"]
+[connection signal="area_exited" from="CollisionComponent" to="CollisionComponent" method="_on_area_exited"]

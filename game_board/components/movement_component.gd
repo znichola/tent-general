@@ -1,12 +1,23 @@
 extends Node
 class_name MovementComponent
 
-signal movement_finished
+@onready var collision_component = $"../CollisionComponent"
 
 @export var speed: float = 100.0
 @export var can_move: bool = true
 
-func move_to(target_position: Vector2, delta: float, node: Node2D) -> bool:
+func _ready() -> void:
+	if collision_component:
+		collision_component.on_collision_enter.connect(_on_collision_enter)
+		collision_component.on_collision_exit.connect(_on_collision_exit)
+
+func _on_collision_enter(unit: Unit) -> void:
+	can_move = false
+
+func _on_collision_exit(unit: Unit) -> void:
+	can_move = true
+
+func try_move_to(target_position: Vector2, delta: float, node: Node2D) -> bool:
 	if not can_move:
 		return false
 	
@@ -16,7 +27,6 @@ func move_to(target_position: Vector2, delta: float, node: Node2D) -> bool:
 	
 	if movement >= distance:
 		node.position = target_position
-		movement_finished.emit()
 		return true
 	else:
 		node.position += direction * movement

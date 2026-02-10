@@ -19,13 +19,12 @@ func _ready() -> void:
 	print("UnitAIComponent ready for ", self.get_parent().name)
 	if vision_component:
 		print("Connecting vision_updated signal for ", self.get_parent().name)
-		vision_component.vision_updated.connect(_on_vision_updated)
+		vision_component.on_enter_vision.connect(_on_enter_vision)
 
-func _on_vision_updated(unit: Unit) -> void:
+func _on_enter_vision(unit: Unit) -> void:
 	print("Vision updated for ", self.get_parent().name, ": saw unit ", unit.name)
 	current_target = unit
 	state = AIState.MOVING_TO_UNIT
-	
 
 func _process(delta: float) -> void:
 	if state == AIState.IDLE:
@@ -38,7 +37,7 @@ func _process(delta: float) -> void:
 		# 	movement_component.move_to(target_position, delta, self.get_parent())
 	elif state == AIState.MOVING_TO_UNIT:
 		if movement_component:
-			movement_component.move_to(current_target.position, delta, self.get_parent())
+			movement_component.try_move_to(current_target.position, delta, self.get_parent())
 
 	if current_target:
 		if attack_component:
