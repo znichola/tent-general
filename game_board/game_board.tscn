@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://buexq8s1a327r"]
+
+[ext_resource type="PackedScene" uid="uid://cyscttd02w5et" path="res://game_board/units/unit.tscn" id="1_qlpbi"]
+
+[node name="Node2D" type="Node2D" unique_id=1058872266]
+
+[node name="Archer" parent="." unique_id=186043592 instance=ExtResource("1_qlpbi")]
+position = Vector2(577, -18)
+
+[node name="Archer2" parent="." unique_id=637511032 instance=ExtResource("1_qlpbi")]
+position = Vector2(832, 0)

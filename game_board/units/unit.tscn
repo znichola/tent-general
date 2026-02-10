@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cyscttd02w5et"]
+
+[ext_resource type="Script" uid="uid://dc77dpalapaae" path="res://game_board/units/unit.gd" id="1_0jked"]
+[ext_resource type="Script" uid="uid://dt3b1eef05xud" path="res://game_board/components/health_component.gd" id="2_n6t1d"]
+[ext_resource type="Script" uid="uid://6fxxw0geavor" path="res://game_board/components/movement_component.gd" id="3_gab0b"]
+[ext_resource type="Script" uid="uid://co601i3ip6tuv" path="res://game_board/components/attack_component.gd" id="4_fvt2d"]
+[ext_resource type="Script" uid="uid://cyrpebhv7txd4" path="res://game_board/components/unit_ai_component.gd" id="5_4js1n"]
+[ext_resource type="Script" uid="uid://bp5hxsuhuvf16" path="res://game_board/components/vision_component.gd" id="6_wsly2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sxw8s"]
+radius = 291.08417
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmdm5"]
+size = Vector2(80, 80)
+
+[node name="Unit" type="Node2D" unique_id=186043592]
+script = ExtResource("1_0jked")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=795734082]
+script = ExtResource("2_n6t1d")
+max_health = 80
+
+[node name="MovementComponent" type="Node" parent="." unique_id=23351134]
+script = ExtResource("3_gab0b")
+speed = 120.0
+
+[node name="AttackComponent" type="Node" parent="." unique_id=66699094]
+script = ExtResource("4_fvt2d")
+damage = 15
+attack_range = 200.0
+attack_cooldown = 1.2
+
+[node name="AIComponent" type="Node" parent="." unique_id=1149085199]
+script = ExtResource("5_4js1n")
+
+[node name="VisionComponent" type="Area2D" parent="." unique_id=1668338710]
+collision_layer = 0
+script = ExtResource("6_wsly2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionComponent" unique_id=730956291]
+shape = SubResource("CircleShape2D_sxw8s")
+
+[node name="Collision" type="Area2D" parent="." unique_id=326969400]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=1589837708]
+shape = SubResource("RectangleShape2D_dmdm5")
+
+[node name="Sprite" type="Polygon2D" parent="." unique_id=294582724]
+color = Color(0.8371849, 0.62610656, 0.29626012, 1)
+polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+
+[connection signal="area_shape_entered" from="VisionComponent" to="VisionComponent" method="_on_area_shape_entered"]

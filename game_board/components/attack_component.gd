@@ -20,13 +20,10 @@ func attack(target: Node) -> bool:
 	if not can_attack:
 		return false
 	
-	# Check if target has a HealthComponent
 	var health_component = target.get_node_or_null("HealthComponent")
 	if health_component and health_component is HealthComponent:
 		health_component.take_damage(damage)
 		attack_performed.emit(target)
-		
-		# Start cooldown
 		can_attack = false
 		cooldown_timer = attack_cooldown
 		return true
