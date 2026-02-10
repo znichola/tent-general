@@ -20,11 +20,21 @@ func _ready() -> void:
 	if vision_component:
 		print("Connecting vision_updated signal for ", self.get_parent().name)
 		vision_component.on_enter_vision.connect(_on_enter_vision)
+		vision_component.on_exit_vision.connect(_on_exit_vision)
 
 func _on_enter_vision(unit: Unit) -> void:
 	print("Vision updated for ", self.get_parent().name, ": saw unit ", unit.name)
 	current_target = unit
 	state = AIState.MOVING_TO_UNIT
+
+func _on_exit_vision(_unit: Unit) -> void:
+	current_target = vision_component.get_closest_target()
+
+	if current_target:
+		state = AIState.MOVING_TO_UNIT
+	else:
+		state = AIState.IDLE
+		
 
 func _process(delta: float) -> void:
 	if state == AIState.IDLE:
@@ -36,10 +46,8 @@ func _process(delta: float) -> void:
 		# 	var target_position = direction * movement_component.speed * delta
 		# 	movement_component.move_to(target_position, delta, self.get_parent())
 	elif state == AIState.MOVING_TO_UNIT:
-		if movement_component:
+		if movement_component and current_target:
 			movement_component.try_move_to(current_target.position, delta, self.get_parent())
 
-	if current_target:
-		if attack_component:
-			if attack_component.is_in_range(self.get_parent().position, current_target.position):
-				attack_component.attack(current_target)
+	if current_target and attack_component:
+		attack_component.attack_if_possible(current_target)

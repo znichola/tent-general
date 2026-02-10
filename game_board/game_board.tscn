@@ -5,7 +5,10 @@
 [node name="Node2D" type="Node2D" unique_id=1058872266]
 
 [node name="Archer" parent="." unique_id=186043592 instance=ExtResource("1_qlpbi")]
-position = Vector2(577, -18)
+position = Vector2(344, 338)
 
 [node name="Archer2" parent="." unique_id=637511032 instance=ExtResource("1_qlpbi")]
-position = Vector2(832, 0)
+position = Vector2(707, 267)
+
+[node name="Archer3" parent="." unique_id=871040014 instance=ExtResource("1_qlpbi")]
+position = Vector2(543, 515)

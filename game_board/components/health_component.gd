@@ -4,7 +4,7 @@ class_name HealthComponent
 signal on_death
 signal on_health_change(old_value: int, new_value: int)
 
-@export var max_health: int = 100
+@export var max_health: int = 60
 var current_health: int
 
 func _ready() -> void:
