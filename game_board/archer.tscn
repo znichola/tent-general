@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cyscttd02w5et"]
+
+[ext_resource type="Script" uid="uid://dc77dpalapaae" path="res://game_board/units/unit.gd" id="1_sxw8s"]
+[ext_resource type="Script" uid="uid://dt3b1eef05xud" path="res://game_board/components/health_component.gd" id="1_xd66s"]
+[ext_resource type="Script" uid="uid://co601i3ip6tuv" path="res://game_board/components/attack_component.gd" id="2_76c8q"]
+[ext_resource type="Script" uid="uid://6fxxw0geavor" path="res://game_board/components/movement_component.gd" id="2_dmdm5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmdm5"]
+size = Vector2(80, 80)
+
+[node name="Archer" type="Area2D" unique_id=459481363]
+script = ExtResource("1_sxw8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1589837708]
+shape = SubResource("RectangleShape2D_dmdm5")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=795734082]
+script = ExtResource("1_xd66s")
+max_health = 80
+
+[node name="MovementComponent" type="Node" parent="." unique_id=23351134]
+script = ExtResource("2_dmdm5")
+speed = 120.0
+
+[node name="AttackComponent" type="Node" parent="." unique_id=66699094]
+script = ExtResource("2_76c8q")
+damage = 15
+attack_range = 200.0
+attack_cooldown = 1.2
+
+[node name="Sprite" type="Polygon2D" parent="." unique_id=294582724]
+color = Color(0.8371849, 0.62610656, 0.29626012, 1)
+polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
