@@ -1,7 +1,7 @@
 extends Area2D
 class_name VisionComponent
 
-signal on_update_closest_target(group: Group)
+signal on_new_closest_target(group: Group)
 
 var current_closest_target: Group = null
 
@@ -30,4 +30,4 @@ func try_update_closest_target(ignored_area: Area2D) -> void:
 				best_dist = current_dist
 				current_closest_target = group
 
-	on_update_closest_target.emit(current_closest_target)
+	on_new_closest_target.emit(current_closest_target)

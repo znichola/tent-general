@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://cyscttd02w5et"]
 
-[ext_resource type="Script" uid="uid://dc77dpalapaae" path="res://game_board/group/group.gd" id="1_0jked"]
+[ext_resource type="Script" uid="uid://c2c6vwus4gslu" path="res://game_board/group/group.gd" id="1_stacj"]
 [ext_resource type="Script" uid="uid://dt3b1eef05xud" path="res://game_board/group/components/health.gd" id="2_n6t1d"]
 [ext_resource type="Script" uid="uid://6fxxw0geavor" path="res://game_board/group/components/movement.gd" id="3_gab0b"]
 [ext_resource type="Script" uid="uid://co601i3ip6tuv" path="res://game_board/group/components/attack.gd" id="4_fvt2d"]
-[ext_resource type="Script" uid="uid://cyrpebhv7txd4" path="res://game_board/group/components/ai.gd" id="5_4js1n"]
 [ext_resource type="Script" uid="uid://bp5hxsuhuvf16" path="res://game_board/group/components/vision.gd" id="6_wsly2"]
 [ext_resource type="Script" uid="uid://c3583watj5c3d" path="res://game_board/group/components/collision.gd" id="7_n6t1d"]
 
@@ -18,7 +17,7 @@ radius = 291.08417
 size = Vector2(80, 80)
 
 [node name="Group" type="Node2D" unique_id=186043592]
-script = ExtResource("1_0jked")
+script = ExtResource("1_stacj")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=795734082]
 script = ExtResource("2_n6t1d")
@@ -26,9 +25,6 @@ script = ExtResource("2_n6t1d")
 [node name="MovementComponent" type="Node" parent="." unique_id=23351134]
 script = ExtResource("3_gab0b")
 speed = 120.0
-
-[node name="AIComponent" type="Node" parent="." unique_id=1149085199]
-script = ExtResource("5_4js1n")
 
 [node name="AttackComponent" type="Area2D" parent="." unique_id=1790122325]
 collision_layer = 0
