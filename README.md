@@ -20,9 +20,18 @@ The soute can be interrogated about what they have seen, numbers of units, and h
 ## TODO
 
 - [ ] teams
-- [ ] select units and give orders to move
-- [ ] unit behavior logic / structure
-    - unit_strategy (default unit actions, stand ground, attack target, chase target, skermish, etc)
-    - unit_ai (what the unit is currenly doing)
-    - unit_capabilities 
+- [ ] select group and give orders to move
+- [ ] group behavior logic / structure
+- [ ] rename or figureout the unit vs grop
+    
+    this decides what should be done
+    - group_order : attack target, stand ground, skermish, move to location, mass route, etc
+    - group_ai : internal state of the group, we are moving to xy pos
+    - group_capabilities : vision range, target tracking, movement, etc
+
+    each unit individually decides how it will exeute this order, or not
+    - unit_behavior : cowardly (this unit will easily run away), brave (this unit will charge first), etc
+    - unit_ai : internal state of the unit
+    - unit_capabilities : move to xypos and avoid obstacles and other units
+
 - [ ] spawn units
