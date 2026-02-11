@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cyscttd02w5et"]
 
-[ext_resource type="Script" uid="uid://dc77dpalapaae" path="res://game_board/units/unit.gd" id="1_0jked"]
+[ext_resource type="Script" path="res://game_board/units/unit.gd" id="1_0jked"]
 [ext_resource type="Script" uid="uid://dt3b1eef05xud" path="res://game_board/components/health_component.gd" id="2_n6t1d"]
 [ext_resource type="Script" uid="uid://6fxxw0geavor" path="res://game_board/components/movement_component.gd" id="3_gab0b"]
 [ext_resource type="Script" uid="uid://co601i3ip6tuv" path="res://game_board/components/attack_component.gd" id="4_fvt2d"]

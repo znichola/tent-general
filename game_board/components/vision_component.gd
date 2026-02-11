@@ -1,40 +1,33 @@
 extends Area2D
 class_name VisionComponent
 
-signal on_enter_vision(unit: Unit)
-signal on_exit_vision(unit: Unit)
+signal on_update_closest_target(unit: Unit)
 
-func _on_area_entered(area: Area2D) -> void:
-	var unit = area.get_parent()
-	if unit.is_in_group("units") and self.get_parent() != unit:
-		on_enter_vision.emit(unit)
+var current_closest_target: Unit = null
+
+func _on_area_entered(_area: Area2D) -> void:
+	#TODO: can be optimized by only checking the new area instead of all areas
+	try_update_closest_target(null)
 
 func _on_area_exited(area: Area2D) -> void:
-	var unit = area.get_parent()
-	if unit.is_in_group("units") and self.get_parent() != unit:
-		on_exit_vision.emit(unit)
+	try_update_closest_target(area)
 
-func get_closest_target() -> Unit:
-	var closest: Unit = null
+func try_update_closest_target(ignored_area: Area2D) -> void:
 	var best_dist := INF
 	var my_pos := global_position
-	
-	# TODO fix this, it's returning an empty list even though there are things there
+
 	for area in get_overlapping_areas():
 		var unit := area.get_parent()
-		
-		print("Testing UNIT", unit)
+		var is_self = self.get_parent() == unit
 
-		if not unit.is_in_group("units") and self.get_parent() != unit:
+		if not unit is Unit or is_self or area == ignored_area:
 			continue
 
 		if unit is Unit:
-			# Use global becuse nodes might not share a parent
-			var d := my_pos.distance_to(unit.global_position)
+			var current_dist := my_pos.distance_to(unit.global_position)
 
-			if d < best_dist:
-				best_dist = d
-				closest = unit
+			if current_dist < best_dist:
+				best_dist = current_dist
+				current_closest_target = unit
 	
-	print("NEW closes target", closest)
-	return closest
+	on_update_closest_target.emit(current_closest_target)
