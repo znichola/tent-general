@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cyscttd02w5et"]
 
-[ext_resource type="Script" path="res://game_board/units/unit.gd" id="1_0jked"]
+[ext_resource type="Script" uid="uid://dc77dpalapaae" path="res://game_board/group/group.gd" id="1_0jked"]
 [ext_resource type="Script" uid="uid://dt3b1eef05xud" path="res://game_board/components/health_component.gd" id="2_n6t1d"]
 [ext_resource type="Script" uid="uid://6fxxw0geavor" path="res://game_board/components/movement_component.gd" id="3_gab0b"]
 [ext_resource type="Script" uid="uid://co601i3ip6tuv" path="res://game_board/components/attack_component.gd" id="4_fvt2d"]
-[ext_resource type="Script" uid="uid://cyrpebhv7txd4" path="res://game_board/components/unit_ai_component.gd" id="5_4js1n"]
+[ext_resource type="Script" uid="uid://cyrpebhv7txd4" path="res://game_board/components/group_ai_component.gd" id="5_4js1n"]
 [ext_resource type="Script" uid="uid://bp5hxsuhuvf16" path="res://game_board/components/vision_component.gd" id="6_wsly2"]
 [ext_resource type="Script" uid="uid://c3583watj5c3d" path="res://game_board/components/collision_component.gd" id="7_n6t1d"]
 
@@ -17,7 +17,7 @@ radius = 291.08417
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmdm5"]
 size = Vector2(80, 80)
 
-[node name="Unit" type="Node2D" unique_id=186043592]
+[node name="Group" type="Node2D" unique_id=186043592]
 script = ExtResource("1_0jked")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=795734082]

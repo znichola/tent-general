@@ -1,9 +1,9 @@
 extends Node
-class_name UnitAIComponent
+class_name GroupAIComponent
 
 enum AIState {
 	IDLE,
-	MOVING_TO_UNIT,
+	MOVING_TO_GROUP,
 	MOVING_TO_POSITION,
 }
 
@@ -13,16 +13,16 @@ enum AIState {
 
 var state = AIState.IDLE
 var direction: Vector2 = Vector2.ZERO
-var current_target: Unit = null
+var current_target: Group = null
 
 func _ready() -> void:
 	vision_component.on_update_closest_target.connect(_on_update_closest_target)
 
-func _on_update_closest_target(unit: Unit) -> void:
-	current_target = unit
+func _on_update_closest_target(group: Group) -> void:
+	current_target = group
 
 	if current_target:
-		state = AIState.MOVING_TO_UNIT
+		state = AIState.MOVING_TO_GROUP
 	else:
 		state = AIState.IDLE
 
@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 		#TODO: implement moving to position logic
 		# var target_position = direction * movement_component.speed * delta
 		# movement_component.move_to(target_position, delta, self.get_parent())
-	elif state == AIState.MOVING_TO_UNIT:
+	elif state == AIState.MOVING_TO_GROUP:
 		if current_target:
 			movement_component.try_move_to(current_target.position, delta, self.get_parent())
 

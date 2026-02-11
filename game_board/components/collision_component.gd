@@ -1,15 +1,15 @@
 extends Area2D
 class_name CollisionComponent
 
-signal on_collision_enter(unit: Unit)
-signal on_collision_exit(unit: Unit)
+signal on_collision_enter(group: Group)
+signal on_collision_exit(group: Group)
 
 func _on_area_entered(area: Area2D) -> void:
-	var unit = area.get_parent()
-	if unit is Unit and self.get_parent() != unit:
-		on_collision_enter.emit(unit)
+	var group = area.get_parent()
+	if group is Group and self.get_parent() != group:
+		on_collision_enter.emit(group)
 
 func _on_area_exited(area: Area2D) -> void:
-	var unit = area.get_parent()
-	if unit is Unit and self.get_parent() != unit:
-		on_collision_exit.emit(unit)
+	var group = area.get_parent()
+	if group is Group and self.get_parent() != group:
+		on_collision_exit.emit(group)

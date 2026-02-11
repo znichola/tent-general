@@ -1,5 +1,5 @@
 extends Node2D
-class_name Unit
+class_name Group
 
 @onready var health_component: HealthComponent = get_node("HealthComponent")
 

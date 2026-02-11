@@ -17,3 +17,12 @@ The scout can also give predicitions, (based on observed data and predetermined 
 
 The soute can be interrogated about what they have seen, numbers of units, and how certain they are. This can use used by the player to try corrborate information and get a clearer picture, or not.
 
+## TODO
+
+- [ ] teams
+- [ ] select units and give orders to move
+- [ ] unit behavior logic / structure
+    - unit_strategy (default unit actions, stand ground, attack target, chase target, skermish, etc)
+    - unit_ai (what the unit is currenly doing)
+    - unit_capabilities 
+- [ ] spawn units

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://buexq8s1a327r"]
 
-[ext_resource type="PackedScene" uid="uid://cyscttd02w5et" path="res://game_board/units/unit.tscn" id="1_qlpbi"]
+[ext_resource type="PackedScene" uid="uid://cyscttd02w5et" path="res://game_board/group/group.tscn" id="1_qlpbi"]
 
 [node name="Node2D" type="Node2D" unique_id=1058872266]
 
@@ -11,4 +11,13 @@ position = Vector2(344, 338)
 position = Vector2(707, 267)
 
 [node name="Archer3" parent="." unique_id=871040014 instance=ExtResource("1_qlpbi")]
-position = Vector2(543, 515)
+position = Vector2(543, 512)
+
+[node name="Archer4" parent="." unique_id=2816153 instance=ExtResource("1_qlpbi")]
+position = Vector2(182, 209)
+
+[node name="Archer5" parent="." unique_id=919501202 instance=ExtResource("1_qlpbi")]
+position = Vector2(208, 595)
+
+[node name="Archer6" parent="." unique_id=279985225 instance=ExtResource("1_qlpbi")]
+position = Vector2(1075, 533)
