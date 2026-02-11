@@ -14,7 +14,7 @@ func take_damage(amount: int) -> void:
 	var old_health = current_health
 	current_health = max(0, current_health - amount)
 	on_health_change.emit(old_health, current_health)
-	
+
 	if current_health == 0:
 		on_death.emit()
 

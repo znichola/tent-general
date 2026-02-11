@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://buexq8s1a327r"]
 
 [ext_resource type="PackedScene" uid="uid://cyscttd02w5et" path="res://game_board/group/group.tscn" id="1_qlpbi"]
+[ext_resource type="PackedScene" uid="uid://cqevojnb0h74j" path="res://game_board/command_panel/command_panel.tscn" id="2_rkty7"]
+[ext_resource type="Script" uid="uid://bqy1y6aypc3pi" path="res://game_board/selection_manager.gd" id="3_y6ip2"]
 
-[node name="Node2D" type="Node2D" unique_id=1058872266]
+[node name="GameBoard" type="Node2D" unique_id=1058872266]
 
 [node name="Archer" parent="." unique_id=186043592 instance=ExtResource("1_qlpbi")]
 position = Vector2(344, 338)
@@ -21,3 +23,12 @@ position = Vector2(208, 595)
 
 [node name="Archer6" parent="." unique_id=279985225 instance=ExtResource("1_qlpbi")]
 position = Vector2(1075, 533)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1328258671]
+
+[node name="CommandPanel" parent="CanvasLayer" unique_id=1889630859 instance=ExtResource("2_rkty7")]
+offset_top = -77.0
+offset_bottom = -19.0
+
+[node name="SelectionManager" type="Node2D" parent="." unique_id=180807138]
+script = ExtResource("3_y6ip2")

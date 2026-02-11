@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://gwlewfdv1owi"]
+
+[ext_resource type="PackedScene" uid="uid://dpi8exvqnkisy" path="res://game_board/command_panel/button.tscn" id="1_8vyyt"]
+
+[node name="ButtonsContainer" type="GridContainer" unique_id=1550698775]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -266.0
+offset_top = -58.0
+offset_right = 266.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 100
+columns = 3
+
+[node name="Move" parent="." unique_id=1175768534 instance=ExtResource("1_8vyyt")]
+layout_mode = 2
+text = "Move"
+
+[node name="Attack" parent="." unique_id=2071115408 instance=ExtResource("1_8vyyt")]
+layout_mode = 2
+text = "Attack"
+
+[node name="Stop" parent="." unique_id=952852596 instance=ExtResource("1_8vyyt")]
+layout_mode = 2
+text = "Stop"

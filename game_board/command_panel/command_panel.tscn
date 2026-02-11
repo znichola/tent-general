@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cqevojnb0h74j"]
+
+[ext_resource type="PackedScene" uid="uid://gwlewfdv1owi" path="res://game_board/command_panel/buttons_container.tscn" id="1_8vyyt"]
+
+[node name="CommandPanel" type="Panel" unique_id=1889630859]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -266.0
+offset_top = -58.0
+offset_right = 266.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ButtonsContainer" parent="." unique_id=1550698775 instance=ExtResource("1_8vyyt")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 532.0
+offset_bottom = 58.0
+grow_horizontal = 1
+grow_vertical = 1
