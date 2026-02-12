@@ -4,6 +4,8 @@ class_name AttackComponent
 
 signal on_attack(target: Group)
 
+@onready var attack_animation: AttackAnimation = get_node("AttackAnimation")
+
 @export var damage: int = 10
 @export var attack_cooldown: float = 1.0
 
@@ -29,6 +31,11 @@ func attack_if_possible(target: Group) -> bool:
 	if health_component and health_component is HealthComponent:
 		health_component.take_damage(damage)
 		on_attack.emit(target)
+
+		# Play attack animation
+		if attack_animation:
+			var target_local_pos = to_local(target.global_position)
+			attack_animation.attack(target_local_pos)
 
 		can_attack = false
 		cooldown_timer = attack_cooldown

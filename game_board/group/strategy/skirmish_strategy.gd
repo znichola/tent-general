@@ -2,6 +2,8 @@ extends BaseStrategy
 
 class_name SkirmishStrategy
 
+## Vibe coded SLOP. Don't hesitate to refactor everything.
+
 # Skirmish-specific constants
 const ENGAGEMENT_RANGE: float = 150.0 # Preferred distance to engage from
 const RETREAT_THRESHOLD: float = 100.0 # Distance at which to retreat if enemy too close
@@ -28,8 +30,6 @@ func on_process(_delta: float) -> void:
 		return
 
 	var distance_to_target = global_position.distance_to(current_target.global_position)
-
-	print("DISTANCE", distance_to_target)
 
 	# Check if we need to retreat due to being too close
 	if distance_to_target < RETREAT_THRESHOLD:

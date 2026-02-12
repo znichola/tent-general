@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://6fxxw0geavor" path="res://game_board/group/components/movement.gd" id="3_gab0b"]
 [ext_resource type="Script" uid="uid://co601i3ip6tuv" path="res://game_board/group/components/attack.gd" id="4_fvt2d"]
 [ext_resource type="Script" uid="uid://bp5hxsuhuvf16" path="res://game_board/group/components/vision.gd" id="6_wsly2"]
+[ext_resource type="Script" uid="uid://buvta07u11ch" path="res://game_board/group/helpers/attack_animation.gd" id="7_hsmjr"]
 [ext_resource type="Script" uid="uid://c3583watj5c3d" path="res://game_board/group/components/collision.gd" id="7_n6t1d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6t1d"]
@@ -35,6 +36,11 @@ attack_cooldown = 1.2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent" unique_id=384630568]
 shape = SubResource("RectangleShape2D_n6t1d")
 debug_color = Color(0.972549, 0, 0.44313726, 0.23529412)
+
+[node name="AttackAnimation" type="Line2D" parent="AttackComponent" unique_id=1826900311]
+default_color = Color(0.8291842, 0.38712272, 0.24854058, 1)
+joint_mode = 1
+script = ExtResource("7_hsmjr")
 
 [node name="VisionComponent" type="Area2D" parent="." unique_id=1668338710]
 collision_layer = 0
