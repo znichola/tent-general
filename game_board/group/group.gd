@@ -1,4 +1,5 @@
 extends Node2D
+
 class_name Group
 
 enum StrategyType {
@@ -16,10 +17,11 @@ var strategy_node: BaseStrategy = null
 func _ready() -> void:
 	_setup_strategy()
 
+
 func _setup_strategy() -> void:
 	if strategy_node:
 		strategy_node.queue_free()
-	
+
 	strategy_node = _create_strategy(strategy_type)
 	if strategy_node:
 		add_child(strategy_node)
@@ -28,6 +30,7 @@ func _setup_strategy() -> void:
 func select() -> void:
 	#TODO: Implement selection visuals here
 	print("Selected group: %s" % name)
+
 
 func _create_strategy(type: StrategyType) -> BaseStrategy:
 	var strategy = null

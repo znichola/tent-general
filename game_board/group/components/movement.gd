@@ -1,20 +1,25 @@
 extends Node
+
 class_name MovementComponent
 
-@onready var collision_component : CollisionComponent = get_node("../CollisionComponent")
+@onready var collision_component: CollisionComponent = get_node("../CollisionComponent")
 
 @export var speed: float = 100.0
 var can_move: bool = true
+
 
 func _ready() -> void:
 	collision_component.on_collision_enter.connect(_on_collision_enter)
 	collision_component.on_collision_exit.connect(_on_collision_exit)
 
+
 func _on_collision_enter(_group: Group) -> void:
 	can_move = false
 
+
 func _on_collision_exit(_group: Group) -> void:
 	can_move = true
+
 
 func try_move_to(target_position: Vector2, delta: float, node: Node2D) -> bool:
 	if not can_move:

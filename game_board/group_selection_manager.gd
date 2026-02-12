@@ -1,6 +1,9 @@
 extends Node2D
 
+class_name GroupSelectionManager
+
 var selected_groups = []
+
 
 func _input(event):
 	var left_clicked: bool = event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
@@ -20,10 +23,12 @@ func _input(event):
 			if parent is Group:
 				select_group(parent)
 
+
 func select_group(group: Group) -> void:
 	if group not in selected_groups:
 		selected_groups.append(group)
 		group.select()
+
 
 func clear_selection() -> void:
 	for group in selected_groups:

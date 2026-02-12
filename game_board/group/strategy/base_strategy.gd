@@ -1,4 +1,5 @@
 extends Node2D
+
 class_name BaseStrategy
 
 enum MoveState {
@@ -16,7 +17,6 @@ enum AttackState {
 @onready var vision_component: VisionComponent = get_node("../VisionComponent")
 @onready var attack_component: AttackComponent = get_node("../AttackComponent")
 @onready var health_component: HealthComponent = get_node("../HealthComponent")
-
 
 var move_state = MoveState.IDLE
 var attack_state = AttackState.IDLE
@@ -48,11 +48,18 @@ func _process(delta: float) -> void:
 
 	on_process(delta)
 
+
 func _on_died() -> void:
 	get_parent().queue_free()
 
-func on_ready() -> void: pass
 
-func on_init() -> void: pass
+func on_ready() -> void:
+	pass
 
-func on_process(_delta: float) -> void: pass
+
+func on_init() -> void:
+	pass
+
+
+func on_process(_delta: float) -> void:
+	pass

@@ -1,4 +1,5 @@
 extends Area2D
+
 class_name AttackComponent
 
 signal on_attack(target: Group)
@@ -20,19 +21,19 @@ func _process(delta: float) -> void:
 func attack_if_possible(target: Group) -> bool:
 	if not can_attack:
 		return false
-	
+
 	if not is_target_in_zone(target):
 		return false
-	
+
 	var health_component = target.get_node_or_null("HealthComponent")
 	if health_component and health_component is HealthComponent:
 		health_component.take_damage(damage)
 		on_attack.emit(target)
-		
+
 		can_attack = false
 		cooldown_timer = attack_cooldown
 		return true
-	
+
 	return false
 
 
