@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://gwlewfdv1owi"]
 
-[ext_resource type="PackedScene" uid="uid://dpi8exvqnkisy" path="res://game_board/command_panel/button.tscn" id="1_8vyyt"]
+[ext_resource type="PackedScene" uid="uid://dpi8exvqnkisy" path="res://game_board/command_panel/command_button.tscn" id="1_8vyyt"]
 
 [node name="ButtonsContainer" type="GridContainer" unique_id=1550698775]
 anchors_preset = 7
@@ -23,7 +23,9 @@ text = "Move"
 [node name="Attack" parent="." unique_id=2071115408 instance=ExtResource("1_8vyyt")]
 layout_mode = 2
 text = "Attack"
+strategy_type = 0
 
 [node name="Stop" parent="." unique_id=952852596 instance=ExtResource("1_8vyyt")]
 layout_mode = 2
 text = "Stop"
+strategy_type = 1

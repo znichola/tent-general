@@ -18,8 +18,9 @@ radius = 291.08417
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmdm5"]
 size = Vector2(80, 80)
 
-[node name="Group" type="Node2D" unique_id=186043592]
+[node name="Group" type="Node2D" unique_id=186043592 node_paths=PackedStringArray("selection_sprite")]
 script = ExtResource("1_stacj")
+selection_sprite = NodePath("SelectionPolygon")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=795734082]
 script = ExtResource("2_n6t1d")
@@ -56,6 +57,11 @@ script = ExtResource("7_n6t1d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionComponent" unique_id=1589837708]
 shape = SubResource("RectangleShape2D_dmdm5")
+
+[node name="SelectionPolygon" type="Polygon2D" parent="." unique_id=370164799]
+scale = Vector2(1.145, 1.145)
+color = Color(0.20953086, 0.54853076, 0.6246036, 1)
+polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 
 [node name="Marker" type="Polygon2D" parent="." unique_id=294582724]
 color = Color(0.8352941, 0.627451, 0.29803923, 1)

@@ -14,6 +14,10 @@ config/name="Tent General"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Events="*uid://dglucemnhjukj"
+
 [layer_names]
 
 2d_physics/layer_1="Bodies"
