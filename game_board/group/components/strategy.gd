@@ -47,6 +47,10 @@ func set_strategy(type: StrategyType) -> void:
 		add_child(strategy_node)
 
 
+func finish_strategy() -> void:
+	set_strategy(default_strategy_type)
+
+
 func _create_strategy(type: StrategyType) -> BaseStrategy:
 	var base_strategy_components = {
 		"parent_group": parent_group,
@@ -61,7 +65,7 @@ func _create_strategy(type: StrategyType) -> BaseStrategy:
 		StrategyType.HOLD_GROUND:
 			strategy = HoldGroundStrategy.new(base_strategy_components, vision_component)
 		StrategyType.MOVE:
-			strategy = MoveStrategy.new(base_strategy_components, vision_component, Vector2(500, 300))
+			strategy = MoveStrategy.new(base_strategy_components, vision_component, self, Vector2(500, 300))
 		StrategyType.SKIRMISH:
 			strategy = SkirmishStrategy.new(base_strategy_components, vision_component)
 		_:
