@@ -79,7 +79,7 @@ color = Color(0.8352941, 0.627451, 0.29803923, 1)
 polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 script = ExtResource("8_pfwts")
 
-[node name="Sigil" type="Polygon2D" parent="." unique_id=136979551]
+[node name="Sigil" type="Polygon2D" parent="Marker" unique_id=136979551]
 polygon = PackedVector2Array(-16, -16, 0, -16, 16, -16, 16, 0, 16, 16, 0, 16, -16, 16, -16, 0)
 
 [connection signal="area_entered" from="VisionComponent" to="VisionComponent" method="_on_area_entered"]

@@ -43,12 +43,14 @@ scale = Vector2(1.145, 1.145)
 color = Color(0.20953086, 0.54853076, 0.6246036, 1)
 polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 
-[node name="Marker" type="Polygon2D" parent="." unique_id=294582724]
+[node name="Marker" type="Polygon2D" parent="." unique_id=294582724 node_paths=PackedStringArray("sigil")]
 color = Color(0.8352941, 0.627451, 0.29803923, 1)
 polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 script = ExtResource("8_dtqq3")
+sigil = NodePath("Sigil")
 
-[node name="Sigil" type="Polygon2D" parent="." unique_id=136979551]
+[node name="Sigil" type="Polygon2D" parent="Marker" unique_id=136979551]
+color = Color(0.6682353, 0.5019608, 0.23843138, 1)
 polygon = PackedVector2Array(0, -24, 24, 0, 24, 24, 0, 24, -24, 24, -24, 0)
 
 [connection signal="area_entered" from="VisionComponent" to="VisionComponent" method="_on_area_entered"]

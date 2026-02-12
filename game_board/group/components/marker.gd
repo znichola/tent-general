@@ -3,6 +3,10 @@ extends Polygon2D
 
 class_name Markers
 
+@export_group("References")
+@export var sigil: Polygon2D
+
+
 func _ready() -> void:
 	_update_color()
 
@@ -18,5 +22,9 @@ func _update_color() -> void:
 		return
 
 	if parent is Group:
-		var team_color = Group.TEAM_COLORS.get(parent.team_name, Color.HOT_PINK)
+		var team_color: Color = Group.TEAM_COLORS.get(parent.team_name, Color.HOT_PINK)
 		color = team_color
+
+		# Set sigil to a darker shade
+		if sigil:
+			sigil.color = team_color.darkened(0.2)
