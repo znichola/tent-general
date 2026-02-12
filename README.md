@@ -35,7 +35,7 @@ vim .git/hooks/pre-commit
 
 # Append this to the file, but before the exec call at the end else it's not run!
 echo Running formatter ...
-gdscript-formatter $(find . -name "*.gd")
+gdscript-formatter --safe $(find . -name "*.gd")
 ```
 
 ## TODO

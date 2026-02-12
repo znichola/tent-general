@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bp5hxsuhuvf16" path="res://game_board/group/components/vision.gd" id="6_wsly2"]
 [ext_resource type="Script" uid="uid://buvta07u11ch" path="res://game_board/group/helpers/attack_animation.gd" id="7_hsmjr"]
 [ext_resource type="Script" uid="uid://c3583watj5c3d" path="res://game_board/group/components/collision.gd" id="7_n6t1d"]
+[ext_resource type="Script" uid="uid://cbenhs1fsuu5j" path="res://game_board/group/components/marker.gd" id="8_pfwts"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6t1d"]
 size = Vector2(116, 118)
@@ -56,9 +57,10 @@ script = ExtResource("7_n6t1d")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionComponent" unique_id=1589837708]
 shape = SubResource("RectangleShape2D_dmdm5")
 
-[node name="Sprite" type="Polygon2D" parent="." unique_id=294582724]
-color = Color(0.8371849, 0.62610656, 0.29626012, 1)
+[node name="Marker" type="Polygon2D" parent="." unique_id=294582724]
+color = Color(0.8352941, 0.627451, 0.29803923, 1)
 polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+script = ExtResource("8_pfwts")
 
 [connection signal="area_entered" from="VisionComponent" to="VisionComponent" method="_on_area_entered"]
 [connection signal="area_exited" from="VisionComponent" to="VisionComponent" method="_on_area_exited"]

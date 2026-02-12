@@ -24,7 +24,7 @@ func try_update_closest_target(ignored_area: Area2D) -> void:
 		var group := area.get_parent()
 		var is_self = self.get_parent() == group
 
-		if not group is Group or is_self or area == ignored_area:
+		if not group is Group or is_self or area == ignored_area or not self.get_parent().is_valid_target(group):
 			continue
 
 		if group is Group:
