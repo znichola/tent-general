@@ -12,8 +12,14 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1328258671]
 
 [node name="CommandPanel" parent="CanvasLayer" unique_id=1889630859 instance=ExtResource("2_rkty7")]
-offset_top = -77.0
-offset_bottom = -19.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -281.0
+offset_top = -68.0
+offset_right = 281.0
+grow_vertical = 0
 
 [node name="GroupSelectionManager" type="Node2D" parent="." unique_id=180807138]
 script = ExtResource("3_y6ip2")
