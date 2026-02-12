@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cyscttd02w5et" path="res://game_board/group/group.tscn" id="1_qlpbi"]
 [ext_resource type="PackedScene" uid="uid://cqevojnb0h74j" path="res://game_board/command_panel/command_panel.tscn" id="2_rkty7"]
-[ext_resource type="Script" path="res://game_board/selection_manager.gd" id="3_y6ip2"]
+[ext_resource type="Script" uid="uid://dr68tyxu6cghl" path="res://game_board/group_selection_manager.gd" id="3_y6ip2"]
 
 [node name="GameBoard" type="Node2D" unique_id=1058872266]
 
@@ -11,7 +11,7 @@ position = Vector2(344, 338)
 
 [node name="Archer2" parent="." unique_id=637511032 instance=ExtResource("1_qlpbi")]
 position = Vector2(707, 267)
-strategy_type = 3
+default_strategy_type = 3
 
 [node name="Archer3" parent="." unique_id=871040014 instance=ExtResource("1_qlpbi")]
 position = Vector2(543, 512)
@@ -21,7 +21,7 @@ position = Vector2(182, 209)
 
 [node name="Archer5" parent="." unique_id=919501202 instance=ExtResource("1_qlpbi")]
 position = Vector2(208, 595)
-strategy_type = 2
+default_strategy_type = 2
 
 [node name="Archer6" parent="." unique_id=279985225 instance=ExtResource("1_qlpbi")]
 position = Vector2(851, 550)
@@ -32,5 +32,5 @@ position = Vector2(851, 550)
 offset_top = -77.0
 offset_bottom = -19.0
 
-[node name="SelectionManager" type="Node2D" parent="." unique_id=180807138]
+[node name="GroupSelectionManager" type="Node2D" parent="." unique_id=180807138]
 script = ExtResource("3_y6ip2")
