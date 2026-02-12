@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://buexq8s1a327r"]
 
-[ext_resource type="PackedScene" uid="uid://cyscttd02w5et" path="res://game_board/group/group.tscn" id="1_qlpbi"]
 [ext_resource type="PackedScene" uid="uid://cqevojnb0h74j" path="res://game_board/command_panel/command_panel.tscn" id="2_rkty7"]
+[ext_resource type="PackedScene" uid="uid://bfsyuhx03joi1" path="res://game_board/group/variants/bow.tscn" id="3_h6cje"]
 [ext_resource type="Script" uid="uid://dr68tyxu6cghl" path="res://game_board/group_selection_manager.gd" id="3_y6ip2"]
-[ext_resource type="PackedScene" uid="uid://cb1agj8p33357" path="res://game_board/tent.tscn" id="4_h6cje"]
+[ext_resource type="PackedScene" uid="uid://beyn0gvfwp3w5" path="res://game_board/group/variants/spear.tscn" id="4_h6cje"]
+[ext_resource type="PackedScene" uid="uid://bl25s3eybts4u" path="res://game_board/group/variants/sword.tscn" id="5_wny2v"]
+[ext_resource type="PackedScene" uid="uid://cb1agj8p33357" path="res://game_board/tent.tscn" id="6_wpyk7"]
 
 [node name="GameBoard" type="Node2D" unique_id=1058872266]
 
@@ -16,30 +18,30 @@ offset_bottom = -19.0
 [node name="GroupSelectionManager" type="Node2D" parent="." unique_id=180807138]
 script = ExtResource("3_y6ip2")
 
-[node name="Archer" parent="." unique_id=186043592 instance=ExtResource("1_qlpbi")]
-position = Vector2(287, 307)
+[node name="Bow" parent="." unique_id=186043592 instance=ExtResource("3_h6cje")]
+position = Vector2(140, 115)
 
-[node name="Archer2" parent="." unique_id=637511032 instance=ExtResource("1_qlpbi")]
-position = Vector2(796, 111)
+[node name="Spear" parent="." unique_id=1249792439 instance=ExtResource("4_h6cje")]
+position = Vector2(316, 315)
+
+[node name="Sword" parent="." unique_id=1372898124 instance=ExtResource("5_wny2v")]
+position = Vector2(128, 479)
+
+[node name="Bow2" parent="." unique_id=1315764748 instance=ExtResource("3_h6cje")]
+position = Vector2(640, -1)
 team_name = 1
 
-[node name="Archer3" parent="." unique_id=871040014 instance=ExtResource("1_qlpbi")]
-position = Vector2(182, 126)
-
-[node name="Archer4" parent="." unique_id=2816153 instance=ExtResource("1_qlpbi")]
-position = Vector2(894, 322)
+[node name="Spear2" parent="." unique_id=539646631 instance=ExtResource("4_h6cje")]
+position = Vector2(709, 325)
 team_name = 1
 
-[node name="Archer5" parent="." unique_id=919501202 instance=ExtResource("1_qlpbi")]
-position = Vector2(143, 498)
-
-[node name="Archer6" parent="." unique_id=279985225 instance=ExtResource("1_qlpbi")]
-position = Vector2(760, 476)
+[node name="Sword2" parent="." unique_id=1630608276 instance=ExtResource("5_wny2v")]
+position = Vector2(594, 580)
 team_name = 1
 
-[node name="TentYellow" parent="." unique_id=1462869556 instance=ExtResource("4_h6cje")]
-position = Vector2(64, 296)
+[node name="Tent" parent="." unique_id=990727378 instance=ExtResource("6_wpyk7")]
+position = Vector2(355, 168)
 
-[node name="TentGreen" parent="." unique_id=367295275 instance=ExtResource("4_h6cje")]
-position = Vector2(1056, 296)
+[node name="Tent2" parent="." unique_id=924155725 instance=ExtResource("6_wpyk7")]
+position = Vector2(963, 244)
 team_name = 1

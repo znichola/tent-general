@@ -28,7 +28,6 @@ script = ExtResource("2_n6t1d")
 
 [node name="MovementComponent" type="Node" parent="." unique_id=23351134]
 script = ExtResource("3_gab0b")
-speed = 120.0
 
 [node name="StrategyComponent" type="Node" parent="." unique_id=544420575 node_paths=PackedStringArray("parent_group", "movement_component", "vision_component", "attack_component", "health_component")]
 unique_name_in_owner = true
@@ -79,7 +78,7 @@ polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 script = ExtResource("8_pfwts")
 
 [node name="Sigil" type="Polygon2D" parent="." unique_id=136979551]
-polygon = PackedVector2Array(-24, -24, 0, -24, 24, -24, 24, 0, 24, 24, 0, 24, -24, 24, -24, 0)
+polygon = PackedVector2Array(-16, -16, 0, -16, 16, -16, 16, 0, 16, 16, 0, 16, -16, 16, -16, 0)
 
 [connection signal="area_entered" from="VisionComponent" to="VisionComponent" method="_on_area_entered"]
 [connection signal="area_exited" from="VisionComponent" to="VisionComponent" method="_on_area_exited"]

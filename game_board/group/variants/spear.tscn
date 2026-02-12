@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://beyn0gvfwp3w5"]
+
+[ext_resource type="PackedScene" uid="uid://cyscttd02w5et" path="res://game_board/group/group.tscn" id="1_n4ol7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4ol7"]
+size = Vector2(144, 144)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n4ol7"]
+radius = 232.0
+
+[node name="Spear" unique_id=186043592 instance=ExtResource("1_n4ol7")]
+
+[node name="HealthComponent" parent="." index="0" unique_id=795734082]
+max_health = 70
+
+[node name="StrategyComponent" parent="." index="2" unique_id=544420575]
+default_strategy_type = 1
+
+[node name="CollisionShape2D" parent="AttackComponent" parent_id_path=PackedInt32Array(1790122325) index="0" unique_id=384630568]
+shape = SubResource("RectangleShape2D_n4ol7")
+
+[node name="CollisionShape2D" parent="VisionComponent" parent_id_path=PackedInt32Array(1668338710) index="0" unique_id=730956291]
+shape = SubResource("CircleShape2D_n4ol7")
+
+[node name="Sigil" parent="." index="8" unique_id=136979551]
+polygon = PackedVector2Array(0, -16, 16, 0, 0, 16, -16, 0)

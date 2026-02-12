@@ -34,4 +34,5 @@ func try_update_closest_target(ignored_area: Area2D) -> void:
 				best_dist = current_dist
 				current_closest_target = group
 
-	on_new_closest_target.emit(current_closest_target)
+	if current_closest_target:
+		on_new_closest_target.emit(current_closest_target)

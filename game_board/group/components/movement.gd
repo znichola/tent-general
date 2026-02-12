@@ -13,12 +13,14 @@ func _ready() -> void:
 	collision_component.on_collision_exit.connect(_on_collision_exit)
 
 
-func _on_collision_enter(_group: Group) -> void:
-	can_move = false
+func _on_collision_enter(group: Group) -> void:
+	if get_parent().is_valid_target(group):
+		can_move = false
 
 
-func _on_collision_exit(_group: Group) -> void:
-	can_move = true
+func _on_collision_exit(group: Group) -> void:
+	if get_parent().is_valid_target(group):
+		can_move = true
 
 
 func try_move_to(target_position: Vector2, delta: float, node: Node2D) -> bool:
