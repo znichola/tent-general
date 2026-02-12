@@ -17,6 +17,14 @@ The scout can also give predicitions, (based on observed data and predetermined 
 
 The soute can be interrogated about what they have seen, numbers of units, and how certain they are. This can use used by the player to try corrborate information and get a clearer picture, or not.
 
+# Code formatting
+
+To format the code, we use the `gdscript-formatter` tool found [here](https://github.com/GDQuest/GDScript-formatter/releases).\
+Then, you can run it like this to format all `.gd` files in the project:
+```bash
+gdscript-formatter $(find . -name "*.gd")
+```
+
 ## TODO
 
 - [ ] teams
