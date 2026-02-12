@@ -2,13 +2,17 @@ extends Node
 
 class_name MovementComponent
 
-@onready var collision_component: CollisionComponent = get_node("../CollisionComponent")
-
 @export var speed: float = 100.0
+@export_group("References")
+@export var collision_component: CollisionComponent
+
 var can_move: bool = true
 
 
 func _ready() -> void:
+	if not collision_component:
+		push_error("MovementComponent: collision_component is not set!")
+		return
 	collision_component.on_collision_enter.connect(_on_collision_enter)
 	collision_component.on_collision_exit.connect(_on_collision_exit)
 

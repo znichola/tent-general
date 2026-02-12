@@ -15,7 +15,6 @@ enum AttackState {
 
 var parent_group: Group
 var movement_component: MovementComponent
-var vision_component: VisionComponent
 var attack_component: AttackComponent
 var health_component: HealthComponent
 
@@ -27,18 +26,11 @@ var current_target: Group = null
 var current_postion_target = null
 
 
-func _init(
-		_parent_group: Group,
-		_movement_component: MovementComponent,
-		_vision_component: VisionComponent,
-		_attack_component: AttackComponent,
-		_health_component: HealthComponent,
-) -> void:
-	self.parent_group = _parent_group
-	self.movement_component = _movement_component
-	self.vision_component = _vision_component
-	self.attack_component = _attack_component
-	self.health_component = _health_component
+func _init(base_strategy_components: Dictionary) -> void:
+	self.parent_group = base_strategy_components["parent_group"]
+	self.movement_component = base_strategy_components["movement_component"]
+	self.attack_component = base_strategy_components["attack_component"]
+	self.health_component = base_strategy_components["health_component"]
 	on_init()
 
 

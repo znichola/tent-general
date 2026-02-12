@@ -4,13 +4,20 @@ class_name AttackComponent
 
 signal on_attack(target: Group)
 
-@onready var attack_animation: AttackAnimation = get_node("AttackAnimation")
-
 @export var damage: int = 10
 @export var attack_cooldown: float = 1.0
 
+@export_group("References")
+@export var attack_animation: AttackAnimation
+
 var can_attack: bool = true
 var cooldown_timer: float = 0.0
+
+
+func _ready() -> void:
+	if not attack_animation:
+		push_error("AttackComponent: attack_animation is not set and could not be found!")
+		return
 
 
 func _process(delta: float) -> void:

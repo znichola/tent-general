@@ -11,6 +11,12 @@ const SAFE_DISTANCE: float = 200.0 # Distance to retreat to
 const HEALTH_RETREAT_PERCENT: float = 0.9 # Retreat if health below this percentage
 
 var is_retreating: bool = false
+var vision_component: VisionComponent
+
+
+func _init(base_strategy_components: Dictionary, _vision_component: VisionComponent) -> void:
+	vision_component = _vision_component
+	super(base_strategy_components)
 
 
 func on_init() -> void:

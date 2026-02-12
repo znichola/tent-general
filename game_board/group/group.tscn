@@ -26,8 +26,9 @@ selection_sprite = NodePath("SelectionPolygon")
 [node name="HealthComponent" type="Node" parent="." unique_id=795734082]
 script = ExtResource("2_n6t1d")
 
-[node name="MovementComponent" type="Node" parent="." unique_id=23351134]
+[node name="MovementComponent" type="Node" parent="." unique_id=23351134 node_paths=PackedStringArray("collision_component")]
 script = ExtResource("3_gab0b")
+collision_component = NodePath("../CollisionComponent")
 
 [node name="StrategyComponent" type="Node" parent="." unique_id=544420575 node_paths=PackedStringArray("parent_group", "movement_component", "vision_component", "attack_component", "health_component")]
 unique_name_in_owner = true
@@ -38,11 +39,12 @@ vision_component = NodePath("../VisionComponent")
 attack_component = NodePath("../AttackComponent")
 health_component = NodePath("../HealthComponent")
 
-[node name="AttackComponent" type="Area2D" parent="." unique_id=1790122325]
+[node name="AttackComponent" type="Area2D" parent="." unique_id=1790122325 node_paths=PackedStringArray("attack_animation")]
 collision_layer = 0
 script = ExtResource("4_fvt2d")
 damage = 15
 attack_cooldown = 1.2
+attack_animation = NodePath("AttackAnimation")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent" unique_id=384630568]
 shape = SubResource("RectangleShape2D_n6t1d")

@@ -2,6 +2,14 @@ extends BaseStrategy
 
 class_name HoldGroundStrategy
 
+var vision_component: VisionComponent
+
+
+func _init(base_strategy_components: Dictionary, _vision_component: VisionComponent) -> void:
+	vision_component = _vision_component
+	super(base_strategy_components)
+
+
 func on_init() -> void:
 	attack_state = AttackState.ATTACK_GROUP
 

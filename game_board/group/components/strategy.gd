@@ -9,17 +9,32 @@ enum StrategyType {
 	SKIRMISH,
 }
 
+@export var default_strategy_type: StrategyType = StrategyType.ATTACK_IN_RANGE
+
+@export_group("References")
 @export var parent_group: Group
+# TODO decide what to do about collison which is a dep of movement how to encode this
 @export var movement_component: MovementComponent
 @export var vision_component: VisionComponent
 @export var attack_component: AttackComponent
 @export var health_component: HealthComponent
-@export var default_strategy_type: StrategyType = StrategyType.ATTACK_IN_RANGE
 
 var strategy_node: BaseStrategy = null
 
 
 func _ready() -> void:
+	var components = {
+		"parent_group": parent_group,
+		"movement_component": movement_component,
+		"vision_component": vision_component,
+		"attack_component": attack_component,
+		"health_component": health_component,
+	}
+
+	for component_name in components:
+		if not components[component_name]:
+			push_error("StrategyComponent: %s is not set!" % component_name)
+
 	set_strategy(default_strategy_type)
 
 
@@ -33,16 +48,22 @@ func set_strategy(type: StrategyType) -> void:
 
 
 func _create_strategy(type: StrategyType) -> BaseStrategy:
+	var base_strategy_components = {
+		"parent_group": parent_group,
+		"movement_component": movement_component,
+		"attack_component": attack_component,
+		"health_component": health_component,
+	}
 	var strategy = null
 	match type:
 		StrategyType.ATTACK_IN_RANGE:
-			strategy = AttackInRangeStrategy
+			strategy = AttackInRangeStrategy.new(base_strategy_components, vision_component)
 		StrategyType.HOLD_GROUND:
-			strategy = HoldGroundStrategy
+			strategy = HoldGroundStrategy.new(base_strategy_components, vision_component)
 		StrategyType.MOVE:
-			strategy = MoveStrategy
+			strategy = MoveStrategy.new(base_strategy_components, vision_component, Vector2(500, 300))
 		StrategyType.SKIRMISH:
-			strategy = SkirmishStrategy
+			strategy = SkirmishStrategy.new(base_strategy_components, vision_component)
 		_:
 			push_error("Unknown strategy type")
-	return strategy.new(parent_group, movement_component, vision_component, attack_component, health_component)
+	return strategy
