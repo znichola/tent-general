@@ -25,19 +25,17 @@ Then, you can run it like this to format all `.gd` files in the project:
 gdscript-formatter $(find . -name "*.gd")
 ```
 
-To add the formatter as a precommit hook. You can run the lines below.
+To add the formatter as a precommit hook.
 
 ```bash
 # Rename the file so git uses it
-mv .git/hooks/pre-commit.sample .git/hooks/pre-commit.sample
+mv .git/hooks/pre-commit.sample .git/hooks/pre-commit
 
-# Append this to the the end of the file
-cat  <<EOF >> .git/hooks/pre-commit
+vim .git/hooks/pre-commit
 
+# Append this to the file, but before the exec call at the end else it's not run!
 echo Running formatter ...
-gdscript-formatter \$(find . -name "*.gd")
-
-EOF
+gdscript-formatter $(find . -name "*.gd")
 ```
 
 ## TODO
