@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dt3b1eef05xud" path="res://game_board/group/components/health.gd" id="2_n6t1d"]
 [ext_resource type="Script" uid="uid://6fxxw0geavor" path="res://game_board/group/components/movement.gd" id="3_gab0b"]
 [ext_resource type="Script" uid="uid://co601i3ip6tuv" path="res://game_board/group/components/attack.gd" id="4_fvt2d"]
+[ext_resource type="Script" uid="uid://btuyg21v84xv5" path="res://game_board/group/components/strategy.gd" id="4_r3bqr"]
 [ext_resource type="Script" uid="uid://bp5hxsuhuvf16" path="res://game_board/group/components/vision.gd" id="6_wsly2"]
 [ext_resource type="Script" uid="uid://buvta07u11ch" path="res://game_board/group/helpers/attack_animation.gd" id="7_hsmjr"]
 [ext_resource type="Script" uid="uid://c3583watj5c3d" path="res://game_board/group/components/collision.gd" id="7_n6t1d"]
@@ -28,6 +29,15 @@ script = ExtResource("2_n6t1d")
 [node name="MovementComponent" type="Node" parent="." unique_id=23351134]
 script = ExtResource("3_gab0b")
 speed = 120.0
+
+[node name="StrategyComponent" type="Node" parent="." unique_id=544420575 node_paths=PackedStringArray("parent_group", "movement_component", "vision_component", "attack_component", "health_component")]
+unique_name_in_owner = true
+script = ExtResource("4_r3bqr")
+parent_group = NodePath("..")
+movement_component = NodePath("../MovementComponent")
+vision_component = NodePath("../VisionComponent")
+attack_component = NodePath("../AttackComponent")
+health_component = NodePath("../HealthComponent")
 
 [node name="AttackComponent" type="Area2D" parent="." unique_id=1790122325]
 collision_layer = 0

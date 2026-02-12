@@ -13,10 +13,11 @@ enum AttackState {
 	ATTACK_GROUP,
 }
 
-@onready var movement_component: MovementComponent = get_node("../MovementComponent")
-@onready var vision_component: VisionComponent = get_node("../VisionComponent")
-@onready var attack_component: AttackComponent = get_node("../AttackComponent")
-@onready var health_component: HealthComponent = get_node("../HealthComponent")
+var parent_group: Group
+var movement_component: MovementComponent
+var vision_component: VisionComponent
+var attack_component: AttackComponent
+var health_component: HealthComponent
 
 var move_state = MoveState.IDLE
 var attack_state = AttackState.IDLE
@@ -26,7 +27,18 @@ var current_target: Group = null
 var current_postion_target = null
 
 
-func _init() -> void:
+func _init(
+		_parent_group: Group,
+		_movement_component: MovementComponent,
+		_vision_component: VisionComponent,
+		_attack_component: AttackComponent,
+		_health_component: HealthComponent,
+) -> void:
+	self.parent_group = _parent_group
+	self.movement_component = _movement_component
+	self.vision_component = _vision_component
+	self.attack_component = _attack_component
+	self.health_component = _health_component
 	on_init()
 
 
@@ -38,9 +50,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Move States
 	if move_state == MoveState.MOVE_TO_POSITION and current_postion_target:
-		movement_component.try_move_to(current_postion_target, delta, self.get_parent())
+		movement_component.try_move_to(current_postion_target, delta, parent_group)
 	elif move_state == MoveState.MOVE_TO_GROUP and current_target:
-		movement_component.try_move_to(current_target.position, delta, self.get_parent())
+		movement_component.try_move_to(current_target.position, delta, parent_group)
 
 	# Attack States
 	if attack_state == AttackState.ATTACK_GROUP and current_target:
@@ -53,8 +65,9 @@ func _exit_tree() -> void:
 	on_deinit()
 
 
+#TODO: Centralize group death
 func _on_died() -> void:
-	get_parent().queue_free()
+	parent_group.queue_free()
 
 
 func on_ready() -> void:

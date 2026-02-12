@@ -2,7 +2,7 @@ extends Button
 
 class_name CommandButton
 
-@export var strategy_type: Group.StrategyType = Group.StrategyType.MOVE
+@export var strategy_type: StrategyComponent.StrategyType = StrategyComponent.StrategyType.MOVE
 
 
 func _on_pressed() -> void:

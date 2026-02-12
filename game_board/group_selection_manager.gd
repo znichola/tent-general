@@ -79,9 +79,11 @@ func clear_selection() -> void:
 	selected_groups.clear()
 
 
-func set_strategy_for_selected(strategy_type: Group.StrategyType) -> void:
+func set_strategy_for_selected(strategy_type: StrategyComponent.StrategyType) -> void:
 	for group in selected_groups:
-		group.set_strategy(strategy_type)
+		var strategy_component: StrategyComponent = group.get_node_or_null("%StrategyComponent")
+		if strategy_component:
+			strategy_component.set_strategy(strategy_type)
 
 
 func _on_group_destroyed(group: Group) -> void:

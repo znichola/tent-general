@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cb1agj8p33357"]
+
+[ext_resource type="Script" uid="uid://c2c6vwus4gslu" path="res://game_board/group/group.gd" id="1_16rky"]
+[ext_resource type="Script" uid="uid://dt3b1eef05xud" path="res://game_board/group/components/health.gd" id="2_eptl5"]
+[ext_resource type="Script" uid="uid://f8nnjb8bi5kj" path="res://game_board/group/components/objective.gd" id="3_wlb6g"]
+[ext_resource type="Script" uid="uid://bp5hxsuhuvf16" path="res://game_board/group/components/vision.gd" id="6_4743g"]
+[ext_resource type="Script" uid="uid://c3583watj5c3d" path="res://game_board/group/components/collision.gd" id="7_pq4du"]
+[ext_resource type="Script" uid="uid://cbenhs1fsuu5j" path="res://game_board/group/components/marker.gd" id="8_dtqq3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sxw8s"]
+radius = 291.08417
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmdm5"]
+size = Vector2(80, 80)
+
+[node name="Tent" type="Node2D" unique_id=186043592 node_paths=PackedStringArray("selection_sprite")]
+script = ExtResource("1_16rky")
+selection_sprite = NodePath("SelectionPolygon")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=795734082]
+script = ExtResource("2_eptl5")
+
+[node name="ObjectiveComponent" type="Node" parent="." unique_id=1316104187 node_paths=PackedStringArray("health_component")]
+script = ExtResource("3_wlb6g")
+health_component = NodePath("../HealthComponent")
+
+[node name="VisionComponent" type="Area2D" parent="." unique_id=1668338710]
+collision_layer = 0
+script = ExtResource("6_4743g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionComponent" unique_id=730956291]
+shape = SubResource("CircleShape2D_sxw8s")
+debug_color = Color(0.27058825, 0.5019608, 1, 0.18039216)
+
+[node name="CollisionComponent" type="Area2D" parent="." unique_id=326969400]
+script = ExtResource("7_pq4du")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionComponent" unique_id=1589837708]
+shape = SubResource("RectangleShape2D_dmdm5")
+
+[node name="SelectionPolygon" type="Polygon2D" parent="." unique_id=370164799]
+scale = Vector2(1.145, 1.145)
+color = Color(0.20953086, 0.54853076, 0.6246036, 1)
+polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+
+[node name="Marker" type="Polygon2D" parent="." unique_id=294582724]
+color = Color(0.8352941, 0.627451, 0.29803923, 1)
+polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+script = ExtResource("8_dtqq3")
+
+[node name="Sigil" type="Polygon2D" parent="." unique_id=136979551]
+polygon = PackedVector2Array(0, -24, 24, 0, 24, 24, 0, 24, -24, 24, -24, 0)
+
+[connection signal="area_entered" from="VisionComponent" to="VisionComponent" method="_on_area_entered"]
+[connection signal="area_exited" from="VisionComponent" to="VisionComponent" method="_on_area_exited"]
+[connection signal="area_entered" from="CollisionComponent" to="CollisionComponent" method="_on_area_entered"]
+[connection signal="area_exited" from="CollisionComponent" to="CollisionComponent" method="_on_area_exited"]
