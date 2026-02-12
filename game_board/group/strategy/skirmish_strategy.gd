@@ -47,6 +47,11 @@ func on_process(_delta: float) -> void:
 		move_state = MoveState.MOVE_TO_GROUP if distance_to_target > ENGAGEMENT_RANGE else MoveState.IDLE
 
 
+func on_deinit() -> void:
+	if is_retreating:
+		_stop_retreating()
+
+
 func _on_new_closest_target(group: Group) -> void:
 	current_target = group
 
@@ -67,10 +72,12 @@ func _initiate_retreat() -> void:
 
 
 func _start_retreating() -> void:
-	is_retreating = true
-	movement_component.speed += 10
+	if not is_retreating:
+		is_retreating = true
+		movement_component.speed += 10
 
 
 func _stop_retreating() -> void:
-	is_retreating = false
-	movement_component.speed -= 10
+	if is_retreating:
+		is_retreating = false
+		movement_component.speed -= 10

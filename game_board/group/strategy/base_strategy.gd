@@ -49,6 +49,10 @@ func _process(delta: float) -> void:
 	on_process(delta)
 
 
+func _exit_tree() -> void:
+	on_deinit()
+
+
 func _on_died() -> void:
 	get_parent().queue_free()
 
@@ -62,4 +66,8 @@ func on_init() -> void:
 
 
 func on_process(_delta: float) -> void:
+	pass
+
+
+func on_deinit() -> void:
 	pass
