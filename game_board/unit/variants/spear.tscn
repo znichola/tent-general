@@ -22,9 +22,5 @@ shape = SubResource("RectangleShape2D_n4ol7")
 [node name="CollisionShape2D" parent="VisionComponent" parent_id_path=PackedInt32Array(1668338710) index="0" unique_id=730956291]
 shape = SubResource("CircleShape2D_n4ol7")
 
-[node name="Marker" parent="." index="7" unique_id=294582724 node_paths=PackedStringArray("sigil")]
-sigil = NodePath("Sigil")
-
-[node name="Sigil" parent="Marker" index="0" unique_id=136979551]
-color = Color(0.41764706, 0.3137255, 0.14901961, 1)
+[node name="Sigil" parent="Marker" parent_id_path=PackedInt32Array(294582724) index="0" unique_id=136979551]
 polygon = PackedVector2Array(0, -16, 16, 0, 0, 16, -16, 0)

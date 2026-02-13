@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://4hh75vvgnpa0"]
+
+[ext_resource type="PackedScene" uid="uid://g35wxrfph6sb" path="res://game_board/unit/variants/messenger.tscn" id="1_pg0qr"]
+[ext_resource type="PackedScene" uid="uid://beyn0gvfwp3w5" path="res://game_board/unit/variants/spear.tscn" id="2_cfdbp"]
+[ext_resource type="PackedScene" uid="uid://bfsyuhx03joi1" path="res://game_board/unit/variants/bow.tscn" id="3_cfdbp"]
+[ext_resource type="PackedScene" uid="uid://bl25s3eybts4u" path="res://game_board/unit/variants/sword.tscn" id="4_qh1hi"]
+
+[node name="Node2D" type="Node2D" unique_id=575016891]
+
+[node name="Messenger" parent="." unique_id=186043592 instance=ExtResource("1_pg0qr")]
+position = Vector2(21, 625)
+
+[node name="Spear" parent="." unique_id=2104661573 instance=ExtResource("2_cfdbp")]
+position = Vector2(-141, 207)
+team_name = 1
+
+[node name="Spear2" parent="." unique_id=1567654480 instance=ExtResource("2_cfdbp")]
+position = Vector2(666, 418)
+team_name = 1
+
+[node name="Bow" parent="." unique_id=1209490078 instance=ExtResource("3_cfdbp")]
+position = Vector2(278, 280)
+team_name = 1
+
+[node name="Sword" parent="." unique_id=1287942291 instance=ExtResource("4_qh1hi")]
+position = Vector2(40, 434)
+team_name = 0

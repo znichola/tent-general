@@ -3,9 +3,9 @@ extends Node
 class_name MovementComponent
 
 @export var speed: float = 100.0
+@export var combat_engagment = true
 @export_group("References")
 @export var collision_component: CollisionComponent
-
 var can_move: bool = true
 
 
@@ -28,7 +28,7 @@ func _on_collision_exit(unit: Unit) -> void:
 
 
 func try_move_to(target_position: Vector2, delta: float, node: Node2D) -> bool:
-	if not can_move:
+	if not can_move and combat_engagment:
 		return false
 
 	var direction = (target_position - node.position).normalized()

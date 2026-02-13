@@ -13,6 +13,8 @@ const TEAM_COLORS = {
 }
 
 @export var team_name: TeamName = TeamName.YELLOW
+
+@export_group("References")
 @export var selection_sprite: Polygon2D = null
 
 
