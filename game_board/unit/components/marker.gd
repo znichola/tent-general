@@ -21,8 +21,8 @@ func _update_color() -> void:
 	if not parent:
 		return
 
-	if parent is Group:
-		var team_color: Color = Group.TEAM_COLORS.get(parent.team_name, Color.HOT_PINK)
+	if parent is Unit:
+		var team_color: Color = Unit.TEAM_COLORS.get(parent.team_name, Color.HOT_PINK)
 		color = team_color
 
 		# Set sigil to a darker shade

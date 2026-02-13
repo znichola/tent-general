@@ -20,7 +20,7 @@ func _init(base_strategy_components: Dictionary, _vision_component: VisionCompon
 
 
 func on_init() -> void:
-	attack_state = AttackState.ATTACK_GROUP
+	attack_state = AttackState.ATTACK_UNIT
 	move_state = MoveState.IDLE
 
 
@@ -50,7 +50,7 @@ func on_process(_delta: float) -> void:
 			move_state = MoveState.MOVE_TO_POSITION
 	# Normal engagement behavior
 	else:
-		move_state = MoveState.MOVE_TO_GROUP if distance_to_target > ENGAGEMENT_RANGE else MoveState.IDLE
+		move_state = MoveState.MOVE_TO_UNIT if distance_to_target > ENGAGEMENT_RANGE else MoveState.IDLE
 
 
 func on_deinit() -> void:
@@ -58,8 +58,8 @@ func on_deinit() -> void:
 		_stop_retreating()
 
 
-func _on_new_closest_target(group: Group) -> void:
-	current_target = group
+func _on_new_closest_target(unit: Unit) -> void:
+	current_target = unit
 
 
 func _on_health_changed(_old_value: float, new_value: float) -> void:

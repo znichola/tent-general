@@ -16,5 +16,5 @@ func _ready() -> void:
 func _on_objective_destroyed() -> void:
 	print("Objective ", self.name, " destroyed!")
 	Events.on_objective_destroyed.emit(self)
-	#TODO: Centralize group death
+	#TODO: Centralize unit death
 	get_parent().queue_free()

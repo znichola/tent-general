@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://buexq8s1a327r"]
 
 [ext_resource type="PackedScene" uid="uid://cqevojnb0h74j" path="res://game_board/command_panel/command_panel.tscn" id="2_rkty7"]
-[ext_resource type="PackedScene" uid="uid://bfsyuhx03joi1" path="res://game_board/group/variants/bow.tscn" id="3_h6cje"]
-[ext_resource type="Script" uid="uid://dr68tyxu6cghl" path="res://game_board/group_selection_manager.gd" id="3_y6ip2"]
-[ext_resource type="PackedScene" uid="uid://beyn0gvfwp3w5" path="res://game_board/group/variants/spear.tscn" id="4_h6cje"]
-[ext_resource type="PackedScene" uid="uid://bl25s3eybts4u" path="res://game_board/group/variants/sword.tscn" id="5_wny2v"]
+[ext_resource type="PackedScene" uid="uid://bfsyuhx03joi1" path="res://game_board/unit/variants/bow.tscn" id="3_h6cje"]
+[ext_resource type="Script" uid="uid://dr68tyxu6cghl" path="res://game_board/unit_selection_manager.gd" id="3_y6ip2"]
+[ext_resource type="PackedScene" uid="uid://beyn0gvfwp3w5" path="res://game_board/unit/variants/spear.tscn" id="4_h6cje"]
+[ext_resource type="PackedScene" uid="uid://bl25s3eybts4u" path="res://game_board/unit/variants/sword.tscn" id="5_wny2v"]
 [ext_resource type="PackedScene" uid="uid://cb1agj8p33357" path="res://game_board/tent.tscn" id="6_wpyk7"]
 
 [node name="GameBoard" type="Node2D" unique_id=1058872266]
@@ -21,7 +21,7 @@ offset_top = -68.0
 offset_right = 281.0
 grow_vertical = 0
 
-[node name="GroupSelectionManager" type="Node2D" parent="." unique_id=180807138]
+[node name="UnitSelectionManager" type="Node2D" parent="." unique_id=180807138]
 script = ExtResource("3_y6ip2")
 
 [node name="Bow" parent="." unique_id=186043592 instance=ExtResource("3_h6cje")]

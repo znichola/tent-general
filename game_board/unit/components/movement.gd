@@ -17,13 +17,13 @@ func _ready() -> void:
 	collision_component.on_collision_exit.connect(_on_collision_exit)
 
 
-func _on_collision_enter(group: Group) -> void:
-	if get_parent().is_valid_target(group):
+func _on_collision_enter(unit: Unit) -> void:
+	if get_parent().is_valid_target(unit):
 		can_move = false
 
 
-func _on_collision_exit(group: Group) -> void:
-	if get_parent().is_valid_target(group):
+func _on_collision_exit(unit: Unit) -> void:
+	if get_parent().is_valid_target(unit):
 		can_move = true
 
 

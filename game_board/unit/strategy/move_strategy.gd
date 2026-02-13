@@ -14,7 +14,7 @@ func _init(base_strategy_components: Dictionary, _vision_component: VisionCompon
 
 
 func on_init() -> void:
-	attack_state = AttackState.ATTACK_GROUP
+	attack_state = AttackState.ATTACK_UNIT
 	move_state = MoveState.MOVE_TO_POSITION
 
 
@@ -25,9 +25,9 @@ func on_ready() -> void:
 func on_process(_delta: float) -> void:
 	# Check if reached target position
 	if move_state == MoveState.MOVE_TO_POSITION and current_postion_target:
-		if parent_group.position.distance_to(current_postion_target) < 5.0:
+		if parent_unit.position.distance_to(current_postion_target) < 5.0:
 			strategy_component.finish_strategy()
 
 
-func _on_update_closest_target(group: Group) -> void:
-	current_target = group
+func _on_update_closest_target(unit: Unit) -> void:
+	current_target = unit

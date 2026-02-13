@@ -2,9 +2,9 @@ extends Area2D
 
 class_name VisionComponent
 
-signal on_new_closest_target(group: Group)
+signal on_new_closest_target(unit: Unit)
 
-var current_closest_target: Group = null
+var current_closest_target: Unit = null
 
 
 func _on_area_entered(_area: Area2D) -> void:
@@ -21,18 +21,18 @@ func try_update_closest_target(ignored_area: Area2D) -> void:
 	var my_pos := global_position
 
 	for area in get_overlapping_areas():
-		var group := area.get_parent()
-		var is_self = self.get_parent() == group
+		var unit := area.get_parent()
+		var is_self = self.get_parent() == unit
 
-		if not group is Group or is_self or area == ignored_area or not self.get_parent().is_valid_target(group):
+		if not unit is Unit or is_self or area == ignored_area or not self.get_parent().is_valid_target(unit):
 			continue
 
-		if group is Group:
-			var current_dist := my_pos.distance_to(group.global_position)
+		if unit is Unit:
+			var current_dist := my_pos.distance_to(unit.global_position)
 
 			if current_dist < best_dist:
 				best_dist = current_dist
-				current_closest_target = group
+				current_closest_target = unit
 
 	if current_closest_target:
 		on_new_closest_target.emit(current_closest_target)

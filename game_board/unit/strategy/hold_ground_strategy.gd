@@ -1,6 +1,6 @@
 extends BaseStrategy
 
-class_name AttackInRangeStrategy
+class_name HoldGroundStrategy
 
 var vision_component: VisionComponent
 
@@ -11,17 +11,12 @@ func _init(base_strategy_components: Dictionary, _vision_component: VisionCompon
 
 
 func on_init() -> void:
-	attack_state = AttackState.ATTACK_GROUP
+	attack_state = AttackState.ATTACK_UNIT
 
 
 func on_ready() -> void:
 	vision_component.on_new_closest_target.connect(_on_update_closest_target)
 
 
-func _on_update_closest_target(group: Group) -> void:
-	current_target = group
-
-	if current_target:
-		move_state = MoveState.MOVE_TO_GROUP
-	else:
-		move_state = MoveState.IDLE
+func _on_update_closest_target(unit: Unit) -> void:
+	current_target = unit

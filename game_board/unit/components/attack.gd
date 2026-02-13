@@ -2,7 +2,7 @@ extends Area2D
 
 class_name AttackComponent
 
-signal on_attack(target: Group)
+signal on_attack(target: Unit)
 
 @export var damage: int = 10
 @export var attack_cooldown: float = 1.0
@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 			can_attack = true
 
 
-func attack_if_possible(target: Group) -> bool:
+func attack_if_possible(target: Unit) -> bool:
 	if not can_attack:
 		return false
 
@@ -51,7 +51,7 @@ func attack_if_possible(target: Group) -> bool:
 	return false
 
 
-func is_target_in_zone(target: Group) -> bool:
+func is_target_in_zone(target: Unit) -> bool:
 	var t = target.get_node_or_null("CollisionComponent")
 	if t is Area2D:
 		return t in get_overlapping_areas()

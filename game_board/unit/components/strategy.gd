@@ -12,7 +12,7 @@ enum StrategyType {
 @export var default_strategy_type: StrategyType = StrategyType.ATTACK_IN_RANGE
 
 @export_group("References")
-@export var parent_group: Group
+@export var parent_unit: Unit
 # TODO decide what to do about collison which is a dep of movement how to encode this
 @export var movement_component: MovementComponent
 @export var vision_component: VisionComponent
@@ -24,7 +24,7 @@ var strategy_node: BaseStrategy = null
 
 func _ready() -> void:
 	var components = {
-		"parent_group": parent_group,
+		"parent_unit": parent_unit,
 		"movement_component": movement_component,
 		"vision_component": vision_component,
 		"attack_component": attack_component,
@@ -53,7 +53,7 @@ func finish_strategy() -> void:
 
 func _create_strategy(type: StrategyType) -> BaseStrategy:
 	var base_strategy_components = {
-		"parent_group": parent_group,
+		"parent_unit": parent_unit,
 		"movement_component": movement_component,
 		"attack_component": attack_component,
 		"health_component": health_component,

@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name Group
+class_name Unit
 
 enum TeamName {
 	YELLOW,
@@ -24,7 +24,7 @@ func update_selection(selected: bool) -> void:
 	selection_sprite.visible = selected
 
 
-func is_valid_target(target: Group) -> bool:
+func is_valid_target(target: Unit) -> bool:
 	if not target:
 		return false
 
