@@ -21,6 +21,7 @@ size = Vector2(80, 80)
 
 [node name="Unit" type="Node2D" unique_id=186043592 node_paths=PackedStringArray("selection_sprite")]
 script = ExtResource("1_stacj")
+team_name = null
 selection_sprite = NodePath("SelectionPolygon")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=795734082]
@@ -30,7 +31,7 @@ script = ExtResource("2_n6t1d")
 script = ExtResource("3_gab0b")
 collision_component = NodePath("../CollisionComponent")
 
-[node name="StrategyComponent" type="Node" parent="." unique_id=544420575 node_paths=PackedStringArray("parent_unit", "movement_component", "vision_component", "attack_component", "health_component")]
+[node name="StrategyComponent" type="Node2D" parent="." unique_id=271313233 node_paths=PackedStringArray("parent_unit", "movement_component", "vision_component", "attack_component", "health_component")]
 unique_name_in_owner = true
 script = ExtResource("4_r3bqr")
 parent_unit = NodePath("..")
@@ -74,12 +75,14 @@ scale = Vector2(1.145, 1.145)
 color = Color(0.20953086, 0.54853076, 0.6246036, 1)
 polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 
-[node name="Marker" type="Polygon2D" parent="." unique_id=294582724]
-color = Color(0.8352941, 0.627451, 0.29803923, 1)
+[node name="Marker" type="Polygon2D" parent="." unique_id=294582724 node_paths=PackedStringArray("sigil")]
+color = Color(1, 0.4117647, 0.7058824, 1)
 polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 script = ExtResource("8_pfwts")
+sigil = NodePath("Sigil")
 
 [node name="Sigil" type="Polygon2D" parent="Marker" unique_id=136979551]
+color = Color(0.8, 0.32941177, 0.5647059, 1)
 polygon = PackedVector2Array(-16, -16, 0, -16, 16, -16, 16, 0, 16, 16, 0, 16, -16, 16, -16, 0)
 
 [connection signal="area_entered" from="VisionComponent" to="VisionComponent" method="_on_area_entered"]

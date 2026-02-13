@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 class_name StrategyComponent
 
@@ -8,9 +8,18 @@ enum StrategyType {
 	MOVE,
 	SKIRMISH,
 	ATTACK_TARGET,
+	MESSENGER,
 }
 
 @export var default_strategy_type: StrategyType = StrategyType.ATTACK_IN_RANGE
+
+@export_group("Allowed Strategies")
+@export var allowed_strategies: Array[StrategyComponent.StrategyType] = [
+	StrategyComponent.StrategyType.ATTACK_IN_RANGE,
+	StrategyComponent.StrategyType.HOLD_GROUND,
+	StrategyComponent.StrategyType.MOVE,
+	StrategyComponent.StrategyType.SKIRMISH,
+]
 
 @export_group("References")
 @export var parent_unit: Unit
@@ -67,6 +76,14 @@ func _create_strategy(type: StrategyType, target_position: Vector2 = Vector2.ZER
 			strategy = HoldGroundStrategy.new(base_strategy_components, vision_component)
 		StrategyType.MOVE:
 			strategy = MoveStrategy.new(base_strategy_components, vision_component, self, target_position)
+		StrategyType.MESSENGER:
+			strategy = MessengerStrategy.new(
+				base_strategy_components,
+				vision_component,
+				self,
+				Vector2(500, 300),
+				Vector2(100, 100),
+			)
 		StrategyType.SKIRMISH:
 			strategy = SkirmishStrategy.new(base_strategy_components, vision_component)
 		StrategyType.ATTACK_TARGET:

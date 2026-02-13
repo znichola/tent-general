@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://g35wxrfph6sb"]
+
+[ext_resource type="PackedScene" uid="uid://cyscttd02w5et" path="res://game_board/unit/unit.tscn" id="1_2shnb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2shnb"]
+size = Vector2(28, 28)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2shnb"]
+radius = 384.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bma0t"]
+size = Vector2(28, 28)
+
+[node name="Messenger" unique_id=186043592 instance=ExtResource("1_2shnb")]
+team_name = 0
+
+[node name="HealthComponent" parent="." index="0" unique_id=795734082]
+max_health = 40
+
+[node name="MovementComponent" parent="." index="1" unique_id=23351134]
+speed = 140.0
+combat_engagment = false
+
+[node name="StrategyComponent" parent="." index="2" unique_id=544420575]
+default_strategy_type = 4
+allowed_strategies = Array[int]([4])
+
+[node name="CollisionShape2D" parent="AttackComponent" parent_id_path=PackedInt32Array(1790122325) index="0" unique_id=384630568]
+shape = SubResource("RectangleShape2D_2shnb")
+
+[node name="CollisionShape2D" parent="VisionComponent" parent_id_path=PackedInt32Array(1668338710) index="0" unique_id=730956291]
+shape = SubResource("CircleShape2D_2shnb")
+
+[node name="CollisionShape2D" parent="CollisionComponent" parent_id_path=PackedInt32Array(326969400) index="0" unique_id=1589837708]
+shape = SubResource("RectangleShape2D_bma0t")
+
+[node name="SelectionPolygon" parent="." index="6" unique_id=370164799]
+polygon = PackedVector2Array(-12.227075, -12.227075, 12.227075, -12.227075, 12.227075, 12.227075, -12.227075, 12.227075)
+
+[node name="Marker" parent="." index="7" unique_id=294582724]
+color = Color(0.8352941, 0.627451, 0.29803923, 1)
+polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+
+[node name="Sigil" parent="Marker" index="0" unique_id=136979551]
+color = Color(0.6682353, 0.5019608, 0.23843138, 1)
+polygon = PackedVector2Array(9, -9, 9, -6, 0, 0.1, 0, 2.1, 9, -4, 9, 9, -9, 9, -9, -4, 0, 2, 0, 0, -9, -6, -9, -9)
