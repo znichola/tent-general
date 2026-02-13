@@ -43,7 +43,8 @@ func on_process(_delta: float) -> void:
 	elif target_reached and global_position.distance_to(return_position) < 5.0:
 		move_state = MoveState.IDLE
 		print("Messenger returned to base, finishing strategy ", return_position) # Debug print
-		strategy_component.finish_strategy()
+		parent_unit.queue_free()
+		#strategy_component.finish_strategy()
 		return
 
 	# If there's a threat nearby, evade while moving towards target_position

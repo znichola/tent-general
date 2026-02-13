@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cyscttd02w5et" path="res://game_board/unit/unit.tscn" id="1_2shnb"]
 [ext_resource type="Script" uid="uid://bg7skn1c7pjyg" path="res://game_board/unit/components/shout_component.gd" id="2_bma0t"]
+[ext_resource type="Script" uid="uid://b20405wjhsk0e" path="res://game_board/unit/helpers/shout_animation.gd" id="3_j3sg3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2shnb"]
 size = Vector2(28, 28)
@@ -10,7 +11,7 @@ size = Vector2(28, 28)
 radius = 384.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bma0t"]
-radius = 200.0
+radius = 80.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bma0t"]
 size = Vector2(28, 28)
@@ -43,6 +44,13 @@ script = ExtResource("2_bma0t")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShoutComponent" index="0" unique_id=1379292203]
 shape = SubResource("CircleShape2D_bma0t")
 debug_color = Color(0.60042596, 0.54145205, 0.13117197, 0.18039216)
+
+[node name="ShoutAnimation" type="Line2D" parent="ShoutComponent" index="1" unique_id=600195197]
+points = PackedVector2Array(384, -472)
+closed = true
+width = 2.0
+default_color = Color(0.3128, 0.48416, 0.68, 1)
+script = ExtResource("3_j3sg3")
 
 [node name="CollisionShape2D" parent="CollisionComponent" parent_id_path=PackedInt32Array(326969400) index="0" unique_id=1589837708]
 shape = SubResource("RectangleShape2D_bma0t")

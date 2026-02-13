@@ -4,6 +4,13 @@ class_name ShoutComponent
 
 var message_args = { }
 
+@onready var shout_animation: ShoutAnimation = $ShoutAnimation
+@onready var shout_circle: CircleShape2D = $CollisionShape2D.shape
+
+
+func _ready() -> void:
+	shout_animation.max_radius = shout_circle.radius
+
 
 func set_message_args(args: Dictionary) -> void:
 	message_args = args
@@ -24,3 +31,4 @@ func shout_strategy() -> void:
 				message_args["target_unit"],
 				message_args["return_position"],
 			)
+	shout_animation.shout()
