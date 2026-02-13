@@ -22,7 +22,7 @@ team_name = 0
 max_health = 40
 
 [node name="MovementComponent" parent="." index="1" unique_id=23351134]
-speed = 140.0
+speed = 120.0
 combat_engagment = false
 
 [node name="StrategyComponent" parent="." index="2" unique_id=271313233]

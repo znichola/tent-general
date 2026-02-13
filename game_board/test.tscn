@@ -25,3 +25,7 @@ team_name = 1
 [node name="Sword" parent="." unique_id=1287942291 instance=ExtResource("4_qh1hi")]
 position = Vector2(40, 434)
 team_name = 0
+
+[node name="Spear3" parent="." unique_id=1070551974 instance=ExtResource("2_cfdbp")]
+position = Vector2(225, 459)
+team_name = 0

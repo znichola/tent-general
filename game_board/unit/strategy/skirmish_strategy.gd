@@ -70,8 +70,8 @@ func _on_health_changed(_old_value: float, new_value: float) -> void:
 func _initiate_retreat() -> void:
 	_start_retreating()
 
+	var direction_away = (parent_unit.global_position - target_unit.global_position).normalized()
 	target_pos = parent_unit.global_position + (direction_away * SAFE_DISTANCE)
-	print("parent unit global position:", parent_unit.global_position)
 	move_state = MoveState.MOVE_TO_POSITION
 
 

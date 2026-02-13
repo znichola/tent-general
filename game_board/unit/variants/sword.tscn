@@ -10,9 +10,6 @@ radius = 224.1428
 [node name="HealthComponent" parent="." index="0" unique_id=795734082]
 max_health = 80
 
-[node name="MovementComponent" parent="." index="1" unique_id=23351134]
-speed = 120.0
-
 [node name="CollisionShape2D" parent="VisionComponent" parent_id_path=PackedInt32Array(1668338710) index="0" unique_id=730956291]
 shape = SubResource("CircleShape2D_g77q3")
 
