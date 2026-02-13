@@ -6,11 +6,16 @@ var vision_component: VisionComponent
 var strategy_component: StrategyComponent
 
 
-func _init(base_strategy_components: Dictionary, _vision_component: VisionComponent, _strategy_component: StrategyComponent, target_position: Vector2) -> void:
+func _init(
+		base_strategy_components: BaseStrategyComponents,
+		_vision_component: VisionComponent,
+		_strategy_component: StrategyComponent,
+		target_position: Vector2,
+) -> void:
 	vision_component = _vision_component
 	strategy_component = _strategy_component
+	current_position_target = target_position
 	super(base_strategy_components)
-	current_postion_target = target_position
 
 
 func on_init() -> void:
@@ -24,10 +29,10 @@ func on_ready() -> void:
 
 func on_process(_delta: float) -> void:
 	# Check if reached target position
-	if move_state == MoveState.MOVE_TO_POSITION and current_postion_target:
-		if parent_unit.position.distance_to(current_postion_target) < 5.0:
+	if move_state == MoveState.MOVE_TO_POSITION and current_position_target:
+		if parent_unit.position.distance_to(current_position_target) < 5.0:
 			strategy_component.finish_strategy()
 
 
 func _on_update_closest_target(unit: Unit) -> void:
-	current_target = unit
+	current_attack_target = unit

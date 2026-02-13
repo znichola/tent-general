@@ -5,7 +5,7 @@ class_name AttackInRangeStrategy
 var vision_component: VisionComponent
 
 
-func _init(base_strategy_components: Dictionary, _vision_component: VisionComponent) -> void:
+func _init(base_strategy_components: BaseStrategyComponents, _vision_component: VisionComponent) -> void:
 	vision_component = _vision_component
 	super(base_strategy_components)
 
@@ -19,9 +19,9 @@ func on_ready() -> void:
 
 
 func _on_update_closest_target(unit: Unit) -> void:
-	current_target = unit
+	current_attack_target = unit
 
-	if current_target:
+	if current_attack_target:
 		move_state = MoveState.MOVE_TO_UNIT
 	else:
 		move_state = MoveState.IDLE

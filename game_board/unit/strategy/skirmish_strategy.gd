@@ -14,7 +14,7 @@ var is_retreating: bool = false
 var vision_component: VisionComponent
 
 
-func _init(base_strategy_components: Dictionary, _vision_component: VisionComponent) -> void:
+func _init(base_strategy_components: BaseStrategyComponents, _vision_component: VisionComponent) -> void:
 	vision_component = _vision_component
 	super(base_strategy_components)
 
@@ -30,18 +30,16 @@ func on_ready() -> void:
 
 
 func on_process(_delta: float) -> void:
-	if not current_target:
+	if not current_attack_target:
 		move_state = MoveState.IDLE
 		_stop_retreating()
 		return
 
-	var distance_to_target = global_position.distance_to(current_target.global_position)
+	var distance_to_target = global_position.distance_to(current_attack_target.global_position)
 
-	# Check if we need to retreat due to being too close
 	if distance_to_target < RETREAT_THRESHOLD:
 		_initiate_retreat()
 
-	# Handle retreat behavior
 	if is_retreating:
 		if distance_to_target >= SAFE_DISTANCE:
 			_stop_retreating()
@@ -59,21 +57,21 @@ func on_deinit() -> void:
 
 
 func _on_new_closest_target(unit: Unit) -> void:
-	current_target = unit
+	current_attack_target = unit
 
 
 func _on_health_changed(_old_value: float, new_value: float) -> void:
 	var health_percent = new_value / health_component.max_health
 
-	if health_percent < HEALTH_RETREAT_PERCENT and current_target:
+	if health_percent < HEALTH_RETREAT_PERCENT and current_attack_target:
 		_initiate_retreat()
 
 
 func _initiate_retreat() -> void:
 	_start_retreating()
 
-	var direction_away = (global_position - current_target.global_position).normalized()
-	current_postion_target = global_position + (direction_away * SAFE_DISTANCE)
+	var direction_away = (parent_unit.global_position - current_attack_target.global_position).normalized()
+	current_position_target = parent_unit.global_position + (direction_away * SAFE_DISTANCE)
 	move_state = MoveState.MOVE_TO_POSITION
 
 

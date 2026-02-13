@@ -22,15 +22,15 @@ var move_state = MoveState.IDLE
 var attack_state = AttackState.IDLE
 
 var direction: Vector2 = Vector2.ZERO
-var current_target: Unit = null
-var current_postion_target = null
+var current_attack_target: Unit = null
+var current_position_target = null
 
 
-func _init(base_strategy_components: Dictionary) -> void:
-	self.parent_unit = base_strategy_components["parent_unit"]
-	self.movement_component = base_strategy_components["movement_component"]
-	self.attack_component = base_strategy_components["attack_component"]
-	self.health_component = base_strategy_components["health_component"]
+func _init(components: BaseStrategyComponents) -> void:
+	self.parent_unit = components.parent_unit
+	self.movement_component = components.movement_component
+	self.attack_component = components.attack_component
+	self.health_component = components.health_component
 	on_init()
 
 
@@ -41,14 +41,14 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# Move States
-	if move_state == MoveState.MOVE_TO_POSITION and current_postion_target:
-		movement_component.try_move_to(current_postion_target, delta, parent_unit)
-	elif move_state == MoveState.MOVE_TO_UNIT and current_target:
-		movement_component.try_move_to(current_target.position, delta, parent_unit)
+	if move_state == MoveState.MOVE_TO_POSITION and current_position_target:
+		movement_component.try_move_to(current_position_target, delta, parent_unit)
+	elif move_state == MoveState.MOVE_TO_UNIT and current_attack_target:
+		movement_component.try_move_to(current_attack_target.position, delta, parent_unit)
 
 	# Attack States
-	if attack_state == AttackState.ATTACK_UNIT and current_target:
-		attack_component.attack_if_possible(current_target)
+	if attack_state == AttackState.ATTACK_UNIT and current_attack_target:
+		attack_component.attack_if_possible(current_attack_target)
 
 	on_process(delta)
 

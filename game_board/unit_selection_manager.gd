@@ -15,16 +15,17 @@ func _exit_tree() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	var is_left_click: bool = event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
+	var is_right_click: bool = event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT
 
-	if not is_left_click:
-		return
+	if is_left_click:
+		var clicked_unit = _get_clicked_unit()
 
-	var clicked_unit = _get_clicked_unit()
-
-	if clicked_unit:
-		_handle_unit_click(clicked_unit)
-	else:
-		clear_selection()
+		if clicked_unit:
+			_handle_unit_click(clicked_unit)
+		else:
+			clear_selection()
+	elif is_right_click and selected_units.size() > 0:
+		_handle_move_command()
 
 
 func _get_clicked_unit() -> Unit:
@@ -79,11 +80,29 @@ func clear_selection() -> void:
 	selected_units.clear()
 
 
-func set_strategy_for_selected(strategy_type: StrategyComponent.StrategyType) -> void:
+func set_strategy_for_selected(strategy_type: StrategyComponent.StrategyType, target_position: Vector2 = Vector2.ZERO, target_unit: Unit = null) -> void:
 	for unit in selected_units:
 		var strategy_component: StrategyComponent = unit.get_node_or_null("%StrategyComponent")
 		if strategy_component:
-			strategy_component.set_strategy(strategy_type)
+			strategy_component.set_strategy(strategy_type, target_position, target_unit)
+
+
+func _handle_move_command() -> void:
+	var clicked_unit = _get_clicked_unit()
+
+	if clicked_unit and selected_units.size() > 0:
+		var first_selected = selected_units[0]
+		if not first_selected.is_valid_target(clicked_unit):
+			# Clicked on friendly unit, just move to position
+			var target_position = get_global_mouse_position()
+			set_strategy_for_selected(StrategyComponent.StrategyType.MOVE, target_position, null)
+		else:
+			# Clicked on enemy unit, attack it
+			set_strategy_for_selected(StrategyComponent.StrategyType.ATTACK_TARGET, Vector2.ZERO, clicked_unit)
+	else:
+		# Clicked on ground, move to position
+		var target_position = get_global_mouse_position()
+		set_strategy_for_selected(StrategyComponent.StrategyType.MOVE, target_position, null)
 
 
 func _on_unit_destroyed(unit: Unit) -> void:

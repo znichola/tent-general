@@ -7,6 +7,7 @@ enum StrategyType {
 	HOLD_GROUND,
 	MOVE,
 	SKIRMISH,
+	ATTACK_TARGET,
 }
 
 @export var default_strategy_type: StrategyType = StrategyType.ATTACK_IN_RANGE
@@ -38,11 +39,11 @@ func _ready() -> void:
 	set_strategy(default_strategy_type)
 
 
-func set_strategy(type: StrategyType) -> void:
+func set_strategy(type: StrategyType, target_position: Vector2 = Vector2.ZERO, target_unit: Unit = null) -> void:
 	if strategy_node:
 		strategy_node.queue_free()
 
-	strategy_node = _create_strategy(type)
+	strategy_node = _create_strategy(type, target_position, target_unit)
 	if strategy_node:
 		add_child(strategy_node)
 
@@ -51,13 +52,13 @@ func finish_strategy() -> void:
 	set_strategy(default_strategy_type)
 
 
-func _create_strategy(type: StrategyType) -> BaseStrategy:
-	var base_strategy_components = {
-		"parent_unit": parent_unit,
-		"movement_component": movement_component,
-		"attack_component": attack_component,
-		"health_component": health_component,
-	}
+func _create_strategy(type: StrategyType, target_position: Vector2 = Vector2.ZERO, target_unit: Unit = null) -> BaseStrategy:
+	var base_strategy_components = BaseStrategyComponents.new(
+		parent_unit,
+		movement_component,
+		attack_component,
+		health_component,
+	)
 	var strategy = null
 	match type:
 		StrategyType.ATTACK_IN_RANGE:
@@ -65,9 +66,11 @@ func _create_strategy(type: StrategyType) -> BaseStrategy:
 		StrategyType.HOLD_GROUND:
 			strategy = HoldGroundStrategy.new(base_strategy_components, vision_component)
 		StrategyType.MOVE:
-			strategy = MoveStrategy.new(base_strategy_components, vision_component, self, Vector2(500, 300))
+			strategy = MoveStrategy.new(base_strategy_components, vision_component, self, target_position)
 		StrategyType.SKIRMISH:
 			strategy = SkirmishStrategy.new(base_strategy_components, vision_component)
+		StrategyType.ATTACK_TARGET:
+			strategy = AttackTargetStrategy.new(base_strategy_components, vision_component, self, target_unit)
 		_:
 			push_error("Unknown strategy type")
 	return strategy
