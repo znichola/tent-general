@@ -48,11 +48,16 @@ func _ready() -> void:
 	set_strategy(default_strategy_type)
 
 
-func set_strategy(type: StrategyType, target_position: Vector2 = Vector2.ZERO, target_unit: Unit = null) -> void:
+func set_strategy(
+		strategy_type: StrategyType,
+		target_position: Vector2 = Vector2.ZERO,
+		target_unit: Unit = null,
+		return_position: Vector2 = Vector2.ZERO,
+) -> void:
 	if strategy_node:
 		strategy_node.queue_free()
 
-	strategy_node = _create_strategy(type, target_position, target_unit)
+	strategy_node = _create_strategy(strategy_type, target_position, target_unit, return_position)
 	if strategy_node:
 		add_child(strategy_node)
 
@@ -61,7 +66,12 @@ func finish_strategy() -> void:
 	set_strategy(default_strategy_type)
 
 
-func _create_strategy(type: StrategyType, target_position: Vector2 = Vector2.ZERO, target_unit: Unit = null) -> BaseStrategy:
+func _create_strategy(
+		strategy_type: StrategyType,
+		target_position: Vector2 = Vector2.ZERO,
+		target_unit: Unit = null,
+		return_position: Vector2 = Vector2.ZERO,
+) -> BaseStrategy:
 	var base_strategy_components = BaseStrategyComponents.new(
 		parent_unit,
 		movement_component,
@@ -69,7 +79,7 @@ func _create_strategy(type: StrategyType, target_position: Vector2 = Vector2.ZER
 		health_component,
 	)
 	var strategy = null
-	match type:
+	match strategy_type:
 		StrategyType.ATTACK_IN_RANGE:
 			strategy = AttackInRangeStrategy.new(base_strategy_components, vision_component)
 		StrategyType.HOLD_GROUND:
@@ -81,8 +91,8 @@ func _create_strategy(type: StrategyType, target_position: Vector2 = Vector2.ZER
 				base_strategy_components,
 				vision_component,
 				self,
-				Vector2(500, 300),
-				Vector2(100, 100),
+				target_position,
+				return_position,
 			)
 		StrategyType.SKIRMISH:
 			strategy = SkirmishStrategy.new(base_strategy_components, vision_component)

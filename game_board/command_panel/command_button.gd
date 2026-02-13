@@ -6,4 +6,4 @@ class_name CommandButton
 
 
 func _on_pressed() -> void:
-	Events.on_strategy_change_request.emit(strategy_type)
+	Events.on_strategy_send_request.emit(strategy_type)

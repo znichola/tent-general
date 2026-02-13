@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://g35wxrfph6sb"]
 
 [ext_resource type="PackedScene" uid="uid://cyscttd02w5et" path="res://game_board/unit/unit.tscn" id="1_2shnb"]
+[ext_resource type="Script" uid="uid://bg7skn1c7pjyg" path="res://game_board/unit/components/shout_component.gd" id="2_bma0t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2shnb"]
 size = Vector2(28, 28)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2shnb"]
 radius = 384.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bma0t"]
+radius = 200.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bma0t"]
 size = Vector2(28, 28)
@@ -21,8 +25,8 @@ max_health = 40
 speed = 140.0
 combat_engagment = false
 
-[node name="StrategyComponent" parent="." index="2" unique_id=544420575]
-default_strategy_type = 4
+[node name="StrategyComponent" parent="." index="2" unique_id=271313233]
+default_strategy_type = 1
 allowed_strategies = Array[int]([4])
 
 [node name="CollisionShape2D" parent="AttackComponent" parent_id_path=PackedInt32Array(1790122325) index="0" unique_id=384630568]
@@ -31,13 +35,22 @@ shape = SubResource("RectangleShape2D_2shnb")
 [node name="CollisionShape2D" parent="VisionComponent" parent_id_path=PackedInt32Array(1668338710) index="0" unique_id=730956291]
 shape = SubResource("CircleShape2D_2shnb")
 
+[node name="ShoutComponent" type="Area2D" parent="." index="5" unique_id=491359066]
+unique_name_in_owner = true
+collision_layer = 0
+script = ExtResource("2_bma0t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShoutComponent" index="0" unique_id=1379292203]
+shape = SubResource("CircleShape2D_bma0t")
+debug_color = Color(0.60042596, 0.54145205, 0.13117197, 0.18039216)
+
 [node name="CollisionShape2D" parent="CollisionComponent" parent_id_path=PackedInt32Array(326969400) index="0" unique_id=1589837708]
 shape = SubResource("RectangleShape2D_bma0t")
 
-[node name="SelectionPolygon" parent="." index="6" unique_id=370164799]
+[node name="SelectionPolygon" parent="." index="7" unique_id=370164799]
 polygon = PackedVector2Array(-12.227075, -12.227075, 12.227075, -12.227075, 12.227075, 12.227075, -12.227075, 12.227075)
 
-[node name="Marker" parent="." index="7" unique_id=294582724]
+[node name="Marker" parent="." index="8" unique_id=294582724]
 color = Color(0.8352941, 0.627451, 0.29803923, 1)
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
 

@@ -39,6 +39,7 @@ func on_process(_delta: float) -> void:
 		target_reached = true
 		movement_target = return_position
 		print("Messenger reached target, returning to base ", return_position) # Debug print
+		get_node("../../ShoutComponent").shout_strategy()
 	elif target_reached and global_position.distance_to(return_position) < 5.0:
 		move_state = MoveState.IDLE
 		print("Messenger returned to base, finishing strategy ", return_position) # Debug print

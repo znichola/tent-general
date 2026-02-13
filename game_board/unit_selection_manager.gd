@@ -3,14 +3,15 @@ extends Node2D
 class_name UnitSelectionManager
 
 var selected_units: Array[Unit] = []
+var messenger_unit_scene: PackedScene = preload("res://game_board/unit/variants/messenger.tscn")
 
 
 func _ready() -> void:
-	Events.on_strategy_change_request.connect(set_strategy_for_selected)
+	Events.on_strategy_send_request.connect(_on_strategy_send_request)
 
 
 func _exit_tree() -> void:
-	Events.on_strategy_change_request.disconnect(set_strategy_for_selected)
+	Events.on_strategy_send_request.disconnect(_on_strategy_send_request)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -80,11 +81,33 @@ func clear_selection() -> void:
 	selected_units.clear()
 
 
-func set_strategy_for_selected(strategy_type: StrategyComponent.StrategyType, target_position: Vector2 = Vector2.ZERO, target_unit: Unit = null) -> void:
+func _on_strategy_send_request(
+		strategy_type: StrategyComponent.StrategyType,
+		target_position: Vector2,
+		target_unit: Unit,
+) -> void:
+	var center_mass = Vector2.ZERO
 	for unit in selected_units:
-		var strategy_component: StrategyComponent = unit.get_node_or_null("%StrategyComponent")
-		if strategy_component:
-			strategy_component.set_strategy(strategy_type, target_position, target_unit)
+		center_mass += unit.global_position
+	center_mass /= selected_units.size()
+	var messenger = messenger_unit_scene.instantiate() as Unit
+	var tent_pos = get_node("%Tent").global_position
+	messenger.global_position = tent_pos
+	get_parent().add_child(messenger)
+	messenger.get_node("%StrategyComponent").set_strategy(
+		StrategyComponent.StrategyType.MESSENGER,
+		center_mass,
+		target_unit,
+		tent_pos,
+	)
+	messenger.get_node("%ShoutComponent").set_message_args(
+		{
+			"strategy_type": strategy_type,
+			"target_position": target_position,
+			"target_unit": target_unit,
+			"return_position": tent_pos,
+		},
+	)
 
 
 func _handle_move_command() -> void:
@@ -95,14 +118,14 @@ func _handle_move_command() -> void:
 		if not first_selected.is_valid_target(clicked_unit):
 			# Clicked on friendly unit, just move to position
 			var target_position = get_global_mouse_position()
-			set_strategy_for_selected(StrategyComponent.StrategyType.MOVE, target_position, null)
+			_on_strategy_send_request(StrategyComponent.StrategyType.MOVE, target_position, null)
 		else:
 			# Clicked on enemy unit, attack it
-			set_strategy_for_selected(StrategyComponent.StrategyType.ATTACK_TARGET, Vector2.ZERO, clicked_unit)
+			_on_strategy_send_request(StrategyComponent.StrategyType.ATTACK_TARGET, Vector2.ZERO, clicked_unit)
 	else:
 		# Clicked on ground, move to position
 		var target_position = get_global_mouse_position()
-		set_strategy_for_selected(StrategyComponent.StrategyType.MOVE, target_position, null)
+		_on_strategy_send_request(StrategyComponent.StrategyType.MOVE, target_position, null)
 
 
 func _on_unit_destroyed(unit: Unit) -> void:

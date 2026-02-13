@@ -25,29 +25,34 @@ grow_vertical = 0
 script = ExtResource("3_y6ip2")
 
 [node name="Bow" parent="." unique_id=186043592 instance=ExtResource("3_h6cje")]
-position = Vector2(140, 115)
+position = Vector2(80, 485)
+team_name = 0
 
 [node name="Spear" parent="." unique_id=1249792439 instance=ExtResource("4_h6cje")]
-position = Vector2(316, 315)
+position = Vector2(79, 586)
+team_name = 0
 
 [node name="Sword" parent="." unique_id=1372898124 instance=ExtResource("5_wny2v")]
-position = Vector2(128, 479)
+position = Vector2(100, 163)
+team_name = 0
 
 [node name="Bow2" parent="." unique_id=1315764748 instance=ExtResource("3_h6cje")]
-position = Vector2(640, -1)
+position = Vector2(484, 278)
 team_name = 1
 
 [node name="Spear2" parent="." unique_id=539646631 instance=ExtResource("4_h6cje")]
-position = Vector2(709, 325)
+position = Vector2(1094, 439)
 team_name = 1
 
 [node name="Sword2" parent="." unique_id=1630608276 instance=ExtResource("5_wny2v")]
-position = Vector2(594, 580)
+position = Vector2(1048, 101)
 team_name = 1
 
 [node name="Tent" parent="." unique_id=990727378 instance=ExtResource("6_wpyk7")]
-position = Vector2(355, 168)
+unique_name_in_owner = true
+position = Vector2(75, 60)
 
-[node name="Tent2" parent="." unique_id=924155725 instance=ExtResource("6_wpyk7")]
-position = Vector2(963, 244)
+[node name="TentAI" parent="." unique_id=924155725 instance=ExtResource("6_wpyk7")]
+unique_name_in_owner = true
+position = Vector2(1085, 561)
 team_name = 1
