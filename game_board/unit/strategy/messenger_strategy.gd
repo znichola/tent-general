@@ -15,7 +15,7 @@ var target_reached: bool = false
 
 
 func _init(
-		base_strategy_components: Dictionary,
+		base_strategy_components: BaseStrategyComponents,
 		_vision_component: VisionComponent,
 		_strategy_component: StrategyComponent,
 		target_position: Vector2,
@@ -23,11 +23,11 @@ func _init(
 ) -> void:
 	vision_component = _vision_component
 	strategy_component = _strategy_component
-	super(base_strategy_components)
-	current_postion_target = target_position
+	target_position = target_position
 	movement_target = target_position
 	return_position = _return_position
 	move_state = MoveState.MOVE_TO_POSITION
+	super(base_strategy_components)
 
 
 func on_ready() -> void:
@@ -46,8 +46,8 @@ func on_process(_delta: float) -> void:
 		return
 
 	# If there's a threat nearby, evade while moving towards target_position
-	if current_target:
-		var threat_position = current_target.global_position
+	if target_unit:
+		var threat_position = target_unit.global_position
 		var distance_to_threat = global_position.distance_to(threat_position)
 
 		if distance_to_threat < EVADE_DISTANCE:
@@ -57,7 +57,7 @@ func on_process(_delta: float) -> void:
 
 			# If threat is behind (dot product negative), ignore it
 			if to_threat.dot(to_destination) < 0:
-				current_postion_target = movement_target
+				target_pos = movement_target
 				return
 
 			# Threat is ahead, evade it
@@ -70,13 +70,13 @@ func on_process(_delta: float) -> void:
 
 			# Blend evasion tangent with destination direction
 			var evade_direction = tangent * EVADE_WEIGHT + to_destination * (1.0 - EVADE_WEIGHT)
-			current_postion_target = global_position + evade_direction.normalized() * 50.0
+			target_pos = global_position + evade_direction.normalized() * 50.0
 		else:
-			current_postion_target = movement_target
+			target_pos = movement_target
 	else:
-		current_postion_target = movement_target
+		target_pos = movement_target
 
 
 func _on_update_closest_target(unit: Unit) -> void:
-	current_target = unit
+	target_unit = unit
 	print("Messenger sees new target: ", unit.name)

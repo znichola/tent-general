@@ -22,8 +22,8 @@ var move_state = MoveState.IDLE
 var attack_state = AttackState.IDLE
 
 var direction: Vector2 = Vector2.ZERO
-var current_attack_target: Unit = null
-var current_position_target = null
+var target_unit: Unit = null
+var target_pos: Vector2 = Vector2.ZERO
 
 
 func _init(components: BaseStrategyComponents) -> void:
@@ -41,14 +41,14 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# Move States
-	if move_state == MoveState.MOVE_TO_POSITION and current_position_target:
-		movement_component.try_move_to(current_position_target, delta, parent_unit)
-	elif move_state == MoveState.MOVE_TO_UNIT and current_attack_target:
-		movement_component.try_move_to(current_attack_target.position, delta, parent_unit)
+	if move_state == MoveState.MOVE_TO_POSITION and target_pos:
+		movement_component.try_move_to(target_pos, delta, parent_unit)
+	elif move_state == MoveState.MOVE_TO_UNIT and target_unit:
+		movement_component.try_move_to(target_unit.position, delta, parent_unit)
 
 	# Attack States
-	if attack_state == AttackState.ATTACK_UNIT and current_attack_target:
-		attack_component.attack_if_possible(current_attack_target)
+	if attack_state == AttackState.ATTACK_UNIT and target_unit:
+		attack_component.attack_if_possible(target_unit)
 
 	on_process(delta)
 

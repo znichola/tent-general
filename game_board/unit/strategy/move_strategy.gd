@@ -14,7 +14,7 @@ func _init(
 ) -> void:
 	vision_component = _vision_component
 	strategy_component = _strategy_component
-	current_position_target = target_position
+	target_pos = target_position
 	super(base_strategy_components)
 
 
@@ -29,10 +29,10 @@ func on_ready() -> void:
 
 func on_process(_delta: float) -> void:
 	# Check if reached target position
-	if move_state == MoveState.MOVE_TO_POSITION and current_position_target:
-		if parent_unit.position.distance_to(current_position_target) < 5.0:
+	if move_state == MoveState.MOVE_TO_POSITION and target_pos:
+		if parent_unit.position.distance_to(target_pos) < 5.0:
 			strategy_component.finish_strategy()
 
 
 func _on_update_closest_target(unit: Unit) -> void:
-	current_attack_target = unit
+	target_unit = unit

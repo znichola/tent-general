@@ -19,9 +19,9 @@ func on_ready() -> void:
 
 
 func _on_update_closest_target(unit: Unit) -> void:
-	current_attack_target = unit
+	target_unit = unit
 
-	if current_attack_target:
+	if target_unit:
 		move_state = MoveState.MOVE_TO_UNIT
 	else:
 		move_state = MoveState.IDLE

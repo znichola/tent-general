@@ -19,4 +19,4 @@ func on_ready() -> void:
 
 
 func _on_update_closest_target(unit: Unit) -> void:
-	current_attack_target = unit
+	target_unit = unit

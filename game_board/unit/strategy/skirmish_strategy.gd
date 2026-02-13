@@ -30,12 +30,12 @@ func on_ready() -> void:
 
 
 func on_process(_delta: float) -> void:
-	if not current_attack_target:
+	if not target_unit:
 		move_state = MoveState.IDLE
 		_stop_retreating()
 		return
 
-	var distance_to_target = global_position.distance_to(current_attack_target.global_position)
+	var distance_to_target = global_position.distance_to(target_unit.global_position)
 
 	if distance_to_target < RETREAT_THRESHOLD:
 		_initiate_retreat()
@@ -57,21 +57,21 @@ func on_deinit() -> void:
 
 
 func _on_new_closest_target(unit: Unit) -> void:
-	current_attack_target = unit
+	target_unit = unit
 
 
 func _on_health_changed(_old_value: float, new_value: float) -> void:
 	var health_percent = new_value / health_component.max_health
 
-	if health_percent < HEALTH_RETREAT_PERCENT and current_attack_target:
+	if health_percent < HEALTH_RETREAT_PERCENT and target_unit:
 		_initiate_retreat()
 
 
 func _initiate_retreat() -> void:
 	_start_retreating()
 
-	var direction_away = (parent_unit.global_position - current_attack_target.global_position).normalized()
-	current_position_target = parent_unit.global_position + (direction_away * SAFE_DISTANCE)
+	target_pos = parent_unit.global_position + (direction_away * SAFE_DISTANCE)
+	print("parent unit global position:", parent_unit.global_position)
 	move_state = MoveState.MOVE_TO_POSITION
 
 

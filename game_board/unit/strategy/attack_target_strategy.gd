@@ -1,5 +1,4 @@
 ## Vibed
-
 extends BaseStrategy
 
 class_name AttackTargetStrategy
@@ -16,7 +15,7 @@ func _init(
 ) -> void:
 	vision_component = _vision_component
 	strategy_component = _strategy_component
-	current_attack_target = _target_unit
+	target_unit = _target_unit
 	super(base_strategy_components)
 
 
@@ -26,19 +25,19 @@ func on_init() -> void:
 
 
 func on_ready() -> void:
-	if current_attack_target:
-		current_attack_target.tree_exiting.connect(_on_target_destroyed)
+	if target_unit:
+		target_unit.tree_exiting.connect(_on_target_destroyed)
 
 
 func on_process(_delta: float) -> void:
 	# If target is destroyed or invalid, finish strategy
-	if not current_attack_target or not is_instance_valid(current_attack_target):
+	if not target_unit or not is_instance_valid(target_unit):
 		strategy_component.finish_strategy()
 
 
 func on_deinit() -> void:
-	if current_attack_target and is_instance_valid(current_attack_target):
-		current_attack_target.tree_exiting.disconnect(_on_target_destroyed)
+	if target_unit and is_instance_valid(target_unit):
+		target_unit.tree_exiting.disconnect(_on_target_destroyed)
 
 
 func _on_target_destroyed() -> void:
